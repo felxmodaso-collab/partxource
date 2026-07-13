@@ -308,7 +308,7 @@ footer{background:var(--ink-3);border-top:1px solid var(--line-dark);padding:70p
   .brand img{height:17px}
   /* hero: copy block on top, sequence lives in the free lower band */
   .hero{align-items:flex-start}
-  .hero-inner{padding-top:104px;padding-bottom:0}
+  .hero-inner{padding-top:104px;padding-bottom:0;will-change:opacity,transform}
   .hero-grid{grid-template-columns:1fr;gap:0}
   .trust-card{display:none}
   .stats-strip{display:block}
@@ -350,6 +350,13 @@ footer{background:var(--ink-3);border-top:1px solid var(--line-dark);padding:70p
   .hero-sub{font-size:16px}
 }
 @media(min-width:981px){.mmenu{display:none}}
+/* touch feedback: press states instead of hover (top-studio micro-interaction canon) */
+@media(hover:none){
+  .btn:active{transform:scale(.96)}
+  .supply-tile:active,.fmt:active{transform:scale(.985)}
+  .media-card{transition:transform .3s var(--ease)}
+  .media-card:active{transform:scale(.985)}
+}
 /* landscape phones: shallow viewport — compact hero copy so CTAs never sit cut at the fold */
 @media(max-width:980px) and (max-height:560px){
   .hero-inner{padding-top:84px}
@@ -915,6 +922,7 @@ if(params.get('static')==='1'||matchMedia('(prefers-reduced-motion:reduce)').mat
   var last=null, target=0, progress=0;
   var word=document.querySelector('.hb-word');
   var photo=document.getElementById('heroPhoto');
+  var inner=document.querySelector('.hero-inner');
   /* the P2 showroom photo sits exactly where draw() puts the frames (same 16:9),
      fully opaque at rest, dissolving into the alpha teardown at 2–9% progress */
   function placePhoto(){
@@ -951,14 +959,18 @@ if(params.get('static')==='1'||matchMedia('(prefers-reduced-motion:reduce)').mat
     return null;
   }
   function dim(im){return {w:im.naturalWidth||im.width,h:im.naturalHeight||im.height}}
+  /* mobile stage take-over: as the scrub starts, the teardown grows from the lower
+     band to (almost) the full viewport while the copy yields (Apple-style choreography) */
+  function bandT(){var t=(progress-0.08)/0.18;t=t<0?0:t>1?1:t;return t*t*(3-2*t)}
   function draw(){
     var im=pick(); if(!im||im===last&&!draw.force) return; last=im; draw.force=false;
     var cw=cv.width, ch=cv.height, d=dim(im), r=d.h/d.w;
     ctx.clearRect(0,0,cw,ch);
-    if(ch>cw){ /* portrait: copy owns the top, the car lives in a clean lower band */
-      var w2=cw*1.04, h2=w2*r, bh=ch*.46;
+    if(ch>cw){ /* portrait: copy owns the top at rest, the car claims the stage on scrub */
+      var e=bandT();
+      var w2=cw*(1.04+0.10*e), h2=w2*r, bh=ch*(.46+.34*e);
       if(h2>bh){h2=bh;w2=h2/r}
-      ctx.drawImage(im,(cw-w2)*.5,ch*.54+(bh-h2)*.5,w2,h2);
+      ctx.drawImage(im,(cw-w2)*.5,ch*(.54-.40*e)+(bh-h2)*.5,w2,h2);
     }else{ /* landscape: contained stage right of the copy column */
       var w=cw*.72, h=w*r;
       if(h>ch*.94){h=ch*.94;w=h/r}
@@ -1025,7 +1037,21 @@ if(params.get('static')==='1'||matchMedia('(prefers-reduced-motion:reduce)').mat
       var t2=Math.min(N()-1,Math.round(p*(N()-1)));
       if(t2!==target){target=t2;requestDraw();}
       if(photo) photo.style.opacity=(p<=0.02)?1:(p>=0.09?0:(1-(p-0.02)/0.07).toFixed(3));
-      if(word) word.style.transform='translate(-50%,-50%) translateY('+(p*-70).toFixed(1)+'px)';
+      if(small){
+        /* copy yields the stage over the first ~12% of the pin */
+        var f=(p-0.02)/0.10; f=f<0?0:f>1?1:f;
+        if(inner){
+          inner.style.opacity=(1-f).toFixed(3);
+          inner.style.transform='translateY('+(-26*f).toFixed(1)+'px)';
+          inner.style.visibility=f>0.98?'hidden':'visible';
+        }
+        var bt=(p-0.08)/0.18;
+        if(bt>-0.05&&bt<1.05){draw.force=true;requestDraw();}
+        if(word) word.style.transform='translate(-50%,-50%) translateY('+(p*-70).toFixed(1)+'px) scale('+(1+0.1*p).toFixed(3)+')';
+      }else{
+        if(inner&&inner.style.opacity!==''){inner.style.opacity='';inner.style.transform='';inner.style.visibility='';}
+        if(word) word.style.transform='translate(-50%,-50%) translateY('+(p*-70).toFixed(1)+'px)';
+      }
     }});
 })();
 </script>
