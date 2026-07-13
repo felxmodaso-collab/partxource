@@ -118,8 +118,9 @@ header.scrolled{background:rgba(18,22,15,.94);border-bottom:1px solid var(--line
 .hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;background:var(--ink-3)}
 /* hero v3 — canvas alpha-sequence sandwich: back word < car frames < copy */
 .hero-stage{position:absolute;inset:0;z-index:0;overflow:hidden}
+/* watermark = client's vector logo, ghost-toned fills baked into the SVG itself */
 .hb-word{position:absolute;top:47%;left:66%;transform:translate(-50%,-50%);z-index:0;
-  width:min(34vw,540px);opacity:.16;user-select:none;pointer-events:none;will-change:transform}
+  width:min(68vw,1080px);user-select:none;pointer-events:none;will-change:transform}
 .hb-word img{width:100%;height:auto;display:block}
 #heroSeq{position:absolute;inset:0;z-index:1;width:100%;height:100%;display:block}
 /* real P2 showroom photo: covers the sequence at rest, dissolves into the teardown on scroll;
@@ -309,7 +310,7 @@ footer{background:var(--ink-3);border-top:1px solid var(--line-dark);padding:70p
   .hero-grid{grid-template-columns:1fr;gap:0}
   .trust-card{display:none}
   .stats-strip{display:block}
-  .hb-word{width:52vw;left:50%;top:64%}
+  .hb-word{width:88vw;left:50%;top:66%}
   .scroll-hint{left:auto;right:20px;transform:none;bottom:calc(26px + env(safe-area-inset-bottom))}
   .hero-stage::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
     background:linear-gradient(180deg,rgba(18,22,15,.86) 0%,rgba(18,22,15,.5) 34%,transparent 56%)}
@@ -477,7 +478,7 @@ footer>.wrap{position:relative;z-index:2}
 <!-- HERO -->
 <section class="hero grain" id="top">
   <div class="hero-stage">
-    <div class="hb-word" aria-hidden="true"><img src="assets/brand/x-exact.png" alt="" loading="lazy" decoding="async"></div>
+    <div class="hb-word" aria-hidden="true"><img src="assets/brand/partx-watermark.svg" alt="" width="2016" height="640" loading="lazy" decoding="async"></div>
     <canvas id="heroSeq"></canvas>
     <img class="hero-photo" id="heroPhoto" src="assets/hero-photo.jpg" alt="" decoding="async">
   </div>
