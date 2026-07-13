@@ -410,7 +410,7 @@ footer>.wrap{position:relative;z-index:2}
 /* dark cap raises the section line over the light neighbour, so gear windows
    crossing the boundary are backed by ink + photos instead of empty paper */
 @media(min-width:981px){
-  #cases::before{content:"";position:absolute;left:0;right:0;top:-280px;height:281px;background:var(--ink)}
+  #cases::before{content:"";position:absolute;left:0;right:0;top:-150px;height:151px;background:var(--ink)}
 }
 #cases .sec-head{max-width:440px;margin-bottom:0}
 @media(max-width:980px){
@@ -1040,7 +1040,7 @@ if(params.get('static')==='1'||matchMedia('(prefers-reduced-motion:reduce)').mat
     // photos: clipped only at the TOP (light glass section above); downward they
     // continue freely — over the spacer and onto the white lead section.
     // the clip line follows the raised dark cap (::before) on desktop
-    var cap=matchMedia('(min-width:981px)').matches?280:0;
+    var cap=matchMedia('(min-width:981px)').matches?150:0;
     var top=Math.max(0,cr.top-cap-gr.top);
     photoSvg.style.clipPath='inset('+top.toFixed(1)+'px 0 0 0)';
   }
