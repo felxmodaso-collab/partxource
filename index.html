@@ -69,10 +69,13 @@ section{position:relative;scroll-margin-top:88px}
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   mix-blend-mode:overlay;
 }
+/* hero grain: no blend mode — blending over a canvas redrawn on scrub costs a compositing pass per frame */
+.hero.grain::after{mix-blend-mode:normal;opacity:.04}
 
 /* ---------- header ---------- */
 header{position:fixed;top:0;left:0;right:0;z-index:50;transform:translateZ(0);transition:background .4s var(--ease),backdrop-filter .4s;padding-top:env(safe-area-inset-top)}
-header.scrolled{background:rgba(18,22,15,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line-dark)}
+/* solid header: backdrop-filter over the animating hero canvas re-blurred every frame */
+header.scrolled{background:rgba(18,22,15,.94);border-bottom:1px solid var(--line-dark)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:76px}
 /* exact client logo (dark letters) — lives on a paper plate so it stays true on dark surfaces */
 .brand{display:inline-flex;align-items:center;background:var(--paper);border-radius:9px;padding:7px 13px}
@@ -116,7 +119,7 @@ header.scrolled{background:rgba(18,22,15,.72);backdrop-filter:blur(14px);border-
 /* hero v3 — canvas alpha-sequence sandwich: back word < car frames < copy */
 .hero-stage{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hb-word{position:absolute;top:47%;left:66%;transform:translate(-50%,-50%);z-index:0;
-  width:min(34vw,540px);opacity:.16;user-select:none;pointer-events:none}
+  width:min(34vw,540px);opacity:.16;user-select:none;pointer-events:none;will-change:transform}
 .hb-word img{width:100%;height:auto;display:block}
 #heroSeq{position:absolute;inset:0;z-index:1;width:100%;height:100%;display:block}
 /* real P2 showroom photo: covers the sequence at rest, dissolves into the teardown on scroll;
@@ -352,7 +355,7 @@ footer{background:var(--ink-3);border-top:1px solid var(--line-dark);padding:70p
 .pxg-rot{position:absolute;inset:0;animation:pxg-spin var(--spd,44s) linear infinite;will-change:transform;
   -webkit-mask:var(--g) center/100% 100% no-repeat;mask:var(--g) center/100% 100% no-repeat}
 .pxg-rot>img{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-.pxg-beam,.pxg-shade{position:absolute;inset:-10%;pointer-events:none;
+.pxg-beam,.pxg-shade{position:absolute;inset:-10%;pointer-events:none;will-change:transform;
   animation:pxg-spin var(--spd,44s) linear infinite reverse}
 .pxg-beam{mix-blend-mode:screen;background:
   radial-gradient(circle at var(--lx,33%) var(--ly,28%),rgba(255,88,66,.95) 0%,rgba(224,52,45,.55) 17%,rgba(193,39,45,.25) 32%,rgba(193,39,45,0) 50%)}
@@ -401,8 +404,14 @@ footer>.wrap{position:relative;z-index:2}
 .gc-bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,var(--ember),var(--gold))}
 .gc-gear{position:absolute;aspect-ratio:1;--gs:calc(min(200vh,124vw) * 1.4);width:var(--gs);top:calc(50% + 57px);transform:translateY(-50%);right:calc(var(--gs) * -0.48 - 474px)}
 .gc-photos,.gc-body{position:absolute;inset:0;will-change:transform}
-.gc-photos image{filter:brightness(.42) saturate(.65);transition:filter .5s}
-.gcw.lit image{filter:brightness(1.02) saturate(.95) contrast(1.04)}
+/* photo windows are plain divs with static polygon clips: rotation lives only in CSS
+   transforms on promoted layers — zero per-frame paint (the old SVG attr rotation
+   repainted 6 photos + 6 blur filters every tick and dropped the showcase to ~23fps) */
+.gcp-rot{position:absolute;inset:0;will-change:transform}
+.gcw{position:absolute}
+.gcw img.gcp{width:100%;height:100%;object-fit:cover;filter:brightness(.42) saturate(.65);transition:filter .5s;will-change:transform;max-width:none}
+.gcw.lit img.gcp{filter:brightness(1.02) saturate(.95) contrast(1.04)}
+.gcw-in{position:absolute;inset:0;background:radial-gradient(closest-side,transparent 60%,rgba(9,11,10,.5) 97%);pointer-events:none}
 .gc-body{-webkit-mask:url(assets/gears/gear-6spoke-thin.svg) center/100% 100% no-repeat;mask:url(assets/gears/gear-6spoke-thin.svg) center/100% 100% no-repeat}
 .gc-body>img{position:absolute;inset:0;width:100%;height:100%;max-width:none}
 .gc-beam,.gc-shade{position:absolute;inset:-10%;pointer-events:none;will-change:transform}
@@ -659,7 +668,7 @@ footer>.wrap{position:relative;z-index:2}
         <div class="gc-meta"><span class="gc-idx">01</span><span>/ 06</span><span class="gc-bar"><i></i></span><span class="ru">листайте</span><span class="en">keep scrolling</span></div>
       </div>
       <div class="gc-gear" aria-hidden="true" style="--lx:24.2%;--ly:50%;--sx:75.8%;--sy:50%">
-        <svg class="gc-photos" viewBox="0 0 1024 1024" aria-hidden="true"><defs><path id="gcwin" d="M603.6 451.0 L827.1 322.0 A368.0 368.0 0 0 1 827.1 702.0 L603.6 573.0 A110.0 110.0 0 0 0 603.6 451.0 Z"/><filter id="gcblur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="7"/></filter><clipPath id="gcp0"><use href="#gcwin" transform="rotate(180 512 512)"/></clipPath><clipPath id="gcp1"><use href="#gcwin" transform="rotate(240 512 512)"/></clipPath><clipPath id="gcp2"><use href="#gcwin" transform="rotate(300 512 512)"/></clipPath><clipPath id="gcp3"><use href="#gcwin"/></clipPath><clipPath id="gcp4"><use href="#gcwin" transform="rotate(60 512 512)"/></clipPath><clipPath id="gcp5"><use href="#gcwin" transform="rotate(120 512 512)"/></clipPath></defs><g class="gcp-rot"><g class="gcw" clip-path="url(#gcp0)"><image class="gcp" href="assets/cases/sklad-dvs.jpg" x="63.3" y="302.3" width="419" height="419" preserveAspectRatio="xMidYMid slice" data-cx="273.0" data-cy="512.0"/><use href="#gcwin" transform="rotate(180 512 512)" fill="none" stroke="rgba(9,11,10,.6)" stroke-width="22" filter="url(#gcblur)"/></g><g class="gcw" clip-path="url(#gcp1)"><image class="gcp" href="assets/cases/pogruzka.jpg" x="182.8" y="95.3" width="419" height="419" preserveAspectRatio="xMidYMid slice" data-cx="392.5" data-cy="305.0"/><use href="#gcwin" transform="rotate(240 512 512)" fill="none" stroke="rgba(9,11,10,.6)" stroke-width="22" filter="url(#gcblur)"/></g><g class="gcw" clip-path="url(#gcp2)"><image class="gcp" href="assets/cases/razbor.jpg" x="421.8" y="95.3" width="419" height="419" preserveAspectRatio="xMidYMid slice" data-cx="631.5" data-cy="305.0"/><use href="#gcwin" transform="rotate(300 512 512)" fill="none" stroke="rgba(9,11,10,.6)" stroke-width="22" filter="url(#gcblur)"/></g><g class="gcw" clip-path="url(#gcp3)"><image class="gcp" href="assets/cases/v12.jpg" x="541.3" y="302.3" width="419" height="419" preserveAspectRatio="xMidYMid slice" data-cx="751.0" data-cy="512.0"/><use href="#gcwin" fill="none" stroke="rgba(9,11,10,.6)" stroke-width="22" filter="url(#gcblur)"/></g><g class="gcw" clip-path="url(#gcp4)"><image class="gcp" href="assets/cases/premium.jpg" x="421.8" y="509.3" width="419" height="419" preserveAspectRatio="xMidYMid slice" data-cx="631.5" data-cy="719.0"/><use href="#gcwin" transform="rotate(60 512 512)" fill="none" stroke="rgba(9,11,10,.6)" stroke-width="22" filter="url(#gcblur)"/></g><g class="gcw" clip-path="url(#gcp5)"><image class="gcp" href="assets/cases/nose.jpg" x="182.8" y="509.3" width="419" height="419" preserveAspectRatio="xMidYMid slice" data-cx="392.5" data-cy="719.0"/><use href="#gcwin" transform="rotate(120 512 512)" fill="none" stroke="rgba(9,11,10,.6)" stroke-width="22" filter="url(#gcblur)"/></g></g></svg>
+        <div class="gc-photos" aria-hidden="true"><div class="gcp-rot"><div class="gcw" style="left:6.201%;top:29.541%;width:40.918%;height:40.918%;clip-path:polygon(85.18% 64.56%,31.83% 95.35%,28.54% 89.39%,25.73% 83.19%,23.40% 76.80%,21.58% 70.24%,20.27% 63.56%,19.48% 56.80%,19.21% 50.00%,19.48% 43.20%,20.27% 36.44%,21.58% 29.76%,23.40% 23.20%,25.73% 16.81%,28.54% 10.61%,31.83% 4.65%,85.18% 35.44%,85.19% 35.45%,83.30% 38.80%,81.91% 42.40%,81.07% 46.16%,80.79% 50.00%,81.07% 53.84%,81.91% 57.60%,83.30% 61.20%,85.19% 64.55%)"><img class="gcp" src="assets/cases/sklad-dvs.jpg" alt="" loading="lazy" decoding="async"><i class="gcw-in"></i></div><div class="gcw" style="left:17.871%;top:9.326%;width:40.918%;height:40.918%;clip-path:polygon(54.98% 87.75%,1.64% 56.94%,5.16% 51.12%,9.12% 45.58%,13.49% 40.37%,18.26% 35.51%,23.39% 31.03%,28.85% 26.97%,34.61% 23.34%,40.63% 20.17%,46.88% 17.47%,53.32% 15.27%,59.91% 13.57%,66.61% 12.39%,73.38% 11.73%,80.19% 11.59%,80.20% 73.19%,80.20% 73.20%,76.34% 73.24%,72.54% 73.84%,68.86% 74.99%,65.39% 76.67%,62.21% 78.83%,59.37% 81.44%,56.95% 84.44%,54.99% 87.76%)"><img class="gcp" src="assets/cases/pogruzka.jpg" alt="" loading="lazy" decoding="async"><i class="gcw-in"></i></div><div class="gcw" style="left:41.211%;top:9.326%;width:40.918%;height:40.918%;clip-path:polygon(19.80% 73.19%,19.81% 11.59%,26.62% 11.73%,33.39% 12.39%,40.09% 13.57%,46.68% 15.27%,53.12% 17.47%,59.37% 20.17%,65.39% 23.34%,71.15% 26.97%,76.61% 31.03%,81.74% 35.51%,86.51% 40.37%,90.88% 45.58%,94.84% 51.12%,98.36% 56.94%,45.02% 87.75%,45.01% 87.76%,43.05% 84.44%,40.63% 81.44%,37.79% 78.83%,34.61% 76.67%,31.14% 74.99%,27.46% 73.84%,23.66% 73.24%,19.80% 73.20%)"><img class="gcp" src="assets/cases/razbor.jpg" alt="" loading="lazy" decoding="async"><i class="gcw-in"></i></div><div class="gcw" style="left:52.881%;top:29.541%;width:40.918%;height:40.918%;clip-path:polygon(14.82% 35.44%,68.17% 4.65%,71.46% 10.61%,74.27% 16.81%,76.60% 23.20%,78.42% 29.76%,79.73% 36.44%,80.52% 43.20%,80.79% 50.00%,80.52% 56.80%,79.73% 63.56%,78.42% 70.24%,76.60% 76.80%,74.27% 83.19%,71.46% 89.39%,68.17% 95.35%,14.82% 64.56%,14.81% 64.55%,16.70% 61.20%,18.09% 57.60%,18.93% 53.84%,19.21% 50.00%,18.93% 46.16%,18.09% 42.40%,16.70% 38.80%,14.81% 35.45%)"><img class="gcp" src="assets/cases/v12.jpg" alt="" loading="lazy" decoding="async"><i class="gcw-in"></i></div><div class="gcw" style="left:41.211%;top:49.756%;width:40.918%;height:40.918%;clip-path:polygon(45.02% 12.25%,98.36% 43.06%,94.84% 48.88%,90.88% 54.42%,86.51% 59.63%,81.74% 64.49%,76.61% 68.97%,71.15% 73.03%,65.39% 76.66%,59.37% 79.83%,53.12% 82.53%,46.68% 84.73%,40.09% 86.43%,33.39% 87.61%,26.62% 88.27%,19.81% 88.41%,19.80% 26.81%,19.80% 26.80%,23.66% 26.76%,27.46% 26.16%,31.14% 25.01%,34.61% 23.33%,37.79% 21.17%,40.63% 18.56%,43.05% 15.56%,45.01% 12.24%)"><img class="gcp" src="assets/cases/premium.jpg" alt="" loading="lazy" decoding="async"><i class="gcw-in"></i></div><div class="gcw" style="left:17.871%;top:49.756%;width:40.918%;height:40.918%;clip-path:polygon(80.20% 26.81%,80.19% 88.41%,73.38% 88.27%,66.61% 87.61%,59.91% 86.43%,53.32% 84.73%,46.88% 82.53%,40.63% 79.83%,34.61% 76.66%,28.85% 73.03%,23.39% 68.97%,18.26% 64.49%,13.49% 59.63%,9.12% 54.42%,5.16% 48.88%,1.64% 43.06%,54.98% 12.25%,54.99% 12.24%,56.95% 15.56%,59.37% 18.56%,62.21% 21.17%,65.39% 23.33%,68.86% 25.01%,72.54% 26.16%,76.34% 26.76%,80.20% 26.80%)"><img class="gcp" src="assets/cases/nose.jpg" alt="" loading="lazy" decoding="async"><i class="gcw-in"></i></div></div></div>
         <div class="gc-body">
           <img loading="lazy" decoding="async" src="assets/gears/tex-6spoke-thin.webp" alt="">
           <div class="gc-beam"></div><div class="gc-shade"></div>
@@ -883,7 +892,7 @@ if(params.get('static')==='1'||matchMedia('(prefers-reduced-motion:reduce)').mat
    first (stride order), 1600w replaces it in place; frames decode off-thread via ImageBitmap. */
 (function(){
   var cv=document.getElementById('heroSeq'); if(!cv) return;
-  var ctx=cv.getContext('2d'); ctx.imageSmoothingQuality='high';
+  var ctx=cv.getContext('2d'); ctx.imageSmoothingQuality='medium';
   var mmSmall=matchMedia('(max-width:980px)');
   var small=mmSmall.matches;
   var ND=72, NM=48;
@@ -942,8 +951,12 @@ if(params.get('static')==='1'||matchMedia('(prefers-reduced-motion:reduce)').mat
       ctx.drawImage(im,cw*.30,(ch-h)*.56,w,h);
     }
   }
+  /* coalesce draw calls: many loader/scroll events per frame -> one canvas paint */
+  var rafPending=false;
+  function requestDraw(){ if(rafPending) return; rafPending=true;
+    requestAnimationFrame(function(){rafPending=false;draw();}); }
   function size(){
-    var r=Math.min(devicePixelRatio||1,1.5), w=cv.clientWidth, h=cv.clientHeight;
+    var r=Math.min(devicePixelRatio||1,1.25), w=cv.clientWidth, h=cv.clientHeight;
     if(w&&h&&(cv.width!==Math.round(w*r)||cv.height!==Math.round(h*r))){
       cv.width=Math.round(w*r);cv.height=Math.round(h*r);draw.force=true;draw();placePhoto();
     }
@@ -969,7 +982,7 @@ if(params.get('static')==='1'||matchMedia('(prefers-reduced-motion:reduce)').mat
       (function(u,st,i){
         fetch(u).then(function(r){if(!r.ok)throw 0;return r.blob()})
           .then(function(b){return window.createImageBitmap?createImageBitmap(b):blobToImg(b)})
-          .then(function(bm){st[i]=bm;draw.force=true;draw();})
+          .then(function(bm){st[i]=bm;draw.force=true;requestDraw();})
           .catch(function(){})
           .then(function(){act--;pump();});
       })(t[0],t[1],t[2]);
@@ -996,7 +1009,7 @@ if(params.get('static')==='1'||matchMedia('(prefers-reduced-motion:reduce)').mat
     onUpdate:function(st){
       var p=st.progress; progress=p;
       var t2=Math.min(N()-1,Math.round(p*(N()-1)));
-      if(t2!==target){target=t2;draw();}
+      if(t2!==target){target=t2;requestDraw();}
       if(photo) photo.style.opacity=(p<=0.02)?1:(p>=0.09?0:(1-(p-0.02)/0.07).toFixed(3));
       if(word) word.style.transform='translate(-50%,-50%) translateY('+(p*-70).toFixed(1)+'px)';
     }});
@@ -1009,7 +1022,7 @@ if(params.get('static')==='1'||matchMedia('(prefers-reduced-motion:reduce)').mat
   gsap.registerPlugin(ScrollTrigger);
   var body=document.querySelector('#cases .gc-body');
   var rotG=document.querySelector('#cases .gcp-rot');
-  var phs=[].slice.call(document.querySelectorAll('#cases image.gcp'));
+  var phs=[].slice.call(document.querySelectorAll('#cases img.gcp'));
   var fixed=document.querySelectorAll('#cases .gc-beam, #cases .gc-shade');
   var caps=[].slice.call(document.querySelectorAll('#cases .gc-cap'));
   var wins=[].slice.call(document.querySelectorAll('#cases .gcw'));
@@ -1032,11 +1045,11 @@ if(params.get('static')==='1'||matchMedia('(prefers-reduced-motion:reduce)').mat
       snap:{snapTo:1/5,duration:{min:.15,max:.45},ease:'power1.inOut'},
       onUpdate:function(st){ if(bar) bar.style.width=(st.progress*100)+'%'; }},
     onUpdate:function(){
-      var th=state.r;
-      body.style.transform='rotate('+th+'deg)';
-      rotG.setAttribute('transform','rotate('+th+' 512 512)');
-      phs.forEach(function(el){el.setAttribute('transform','rotate('+(-th)+' '+el.dataset.cx+' '+el.dataset.cy+')');});
-      fixed.forEach(function(el){el.style.transform='rotate('+(-th)+'deg)';});
+      var th=state.r, rs='rotate('+th+'deg)', crs='rotate('+(-th)+'deg)';
+      body.style.transform=rs;
+      rotG.style.transform=rs;
+      phs.forEach(function(el){el.style.transform=crs;});
+      fixed.forEach(function(el){el.style.transform=crs;});
       setActive(Math.round(-th/60));
     }});
   setActive(0);
