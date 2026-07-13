@@ -46,11 +46,13 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
+/* overflow-x:clip (not hidden): forbids ANY horizontal displacement of the viewport —
+   'hidden' still allowed selection-drag/programmatic scroll to shift the page sideways */
+html,body{overflow-x:clip}
 body{
   font-family:"Geist",system-ui,sans-serif;
   background:var(--ink);color:var(--on-dark);
   -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
-  overflow-x:hidden;
 }
 .mono{font-family:"Geist Mono",ui-monospace,monospace}
 img{max-width:100%;display:block}
@@ -375,6 +377,9 @@ footer{background:var(--ink-3);border-top:1px solid var(--line-dark);padding:70p
 /* single-object gears: #how/#cases sit above neighbouring section backgrounds,
    content of light sections sits above the gears */
 #how,#cases,#media{z-index:1}
+/* gears/beams poke far past the right edge — clip X on every viewport so the document
+   never grows wider than the screen (Y overhang stays free for the one-object flow) */
+#cases,#how,#media{overflow-x:clip}
 /* hero and the logo marquee sit ABOVE the gears: opaque backgrounds hide anything
    poking up from the sections below */
 .hero,.marquee{z-index:2}
@@ -427,9 +432,6 @@ footer>.wrap{position:relative;z-index:2}
 }
 #cases .sec-head{max-width:440px;margin-bottom:0}
 @media(max-width:980px){
-  /* keep decor/gear overhang from inflating the mobile layout viewport
-     (shrink-to-fit zoom-out on real phones) — clip X only, Y overhang stays */
-  #cases,#how,#media{overflow-x:clip}
   .gearcase{display:flex;flex-direction:column;gap:8px;min-height:auto}
   .gc-copy{min-height:auto}
   .gc-gear{position:relative;--gs:120vw;width:var(--gs);top:auto;right:auto;transform:none;margin:-6vw auto 0;order:-1}
