@@ -804,6 +804,77 @@ footer>.wrap{position:relative;z-index:2}
 
 <noscript><style>.rev{opacity:1;transform:none}</style></noscript>
 <script>
+/* CMS hydration: content/site.json (edited by the client via /admin) overrides the
+   baked copy. Baked HTML matches the JSON at deploy time, so this is a no-op until
+   an edit lands; if the fetch fails the baked content simply stays. */
+(function(){
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+  function spans(p){return '<span class="ru">'+esc(p.ru)+'</span><span class="en">'+esc(p.en)+'</span>'}
+  function fill(el,p){if(el&&p&&p.ru!=null)el.innerHTML=spans(p)}
+  function text(el,p){if(!el||!p)return;
+    var r=el.querySelector(':scope > .ru'),e=el.querySelector(':scope > .en');
+    if(r&&e){r.textContent=p.ru;e.textContent=p.en}else fill(el,p)}
+  function q(s,root){return (root||document).querySelector(s)}
+  function qa(s,root){return [].slice.call((root||document).querySelectorAll(s))}
+  fetch('content/site.json',{cache:'no-cache'}).then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(c){
+    var ct=c.contacts||{};
+    window.PX_CONTACTS=ct;
+    var tg='https://t.me/'+ct.telegram,wa='https://wa.me/'+ct.whatsapp,tel='tel:'+ct.phone_e164;
+    qa('.mmenu-contacts a').forEach(function(a){
+      var h=a.getAttribute('href')||'';
+      if(h.indexOf('t.me')>-1)a.href=tg;
+      else if(h.indexOf('wa.me')>-1)a.href=wa;
+      else if(h.indexOf('tel:')===0){a.href=tel;a.textContent=ct.phone_display}
+    });
+    qa('.foot-col a').forEach(function(a){
+      var h=a.getAttribute('href')||'';
+      if(h.indexOf('tel:')===0){a.href=tel;a.textContent=ct.phone_display}
+      else if(h.indexOf('t.me')>-1){a.href=tg;a.textContent='Telegram · @'+ct.telegram}
+      else if(h.indexOf('wa.me')>-1)a.href=wa;
+    });
+    var wech=q('.foot-col span[style]');if(wech&&ct.wechat)wech.innerHTML=spans(ct.wechat);
+    var mcta=q('.media-cta');
+    if(mcta){var mspans=qa('.tg > span',mcta);if(mspans.length)mspans[mspans.length-1].textContent='@'+ct.telegram;
+      var ma=q('a',mcta);if(ma)ma.href=tg}
+    if(c.hero){
+      fill(q('.eyebrow'),c.hero.eyebrow);
+      var h1=q('h1');
+      if(h1&&c.hero.title_line1)h1.innerHTML=esc(c.hero.title_line1)+'<br><span class="accent">'+esc(c.hero.title_line2)+'</span>';
+      fill(q('.hero-sub'),c.hero.sub);
+      qa('.trust-card .stat-row').forEach(function(row,i){var st=(c.hero.stats||[])[i];if(!st)return;
+        q('b',row).textContent=st.value;text(q('b + span',row),st.label)});
+      qa('.stats-strip .wrap > div').forEach(function(d,i){var st=(c.hero.stats||[])[i];if(!st)return;
+        q('b',d).textContent=st.value;text(q('b + span',d),st.label_short)});
+      var slog=(c.hero.title_line1||'')+' '+(c.hero.title_line2||'');
+      var fs=q('.foot-slogan');if(fs)fs.textContent=slog;
+      var fb=qa('.foot-bottom span');if(fb[1])fb[1].textContent=slog;
+    }
+    function head(sec,data){if(!sec||!data)return;fill(q('.kicker',sec),data.kicker);fill(q('.sec-head h2',sec),data.title)}
+    var sup=q('#supply');head(sup,c.supply);
+    if(sup&&c.supply)qa('.supply-tile',sup).forEach(function(t,i){var it=c.supply.items[i];if(!it)return;
+      fill(q('h3',t),it.title);fill(q('.sub',t),it.sub)});
+    var how=q('#how');head(how,c.how);
+    if(how&&c.how)qa('.step',how).forEach(function(s,i){var st=c.how.steps[i];if(!st)return;
+      fill(q('.step-copy h3',s),st.title);fill(q('.step-copy p',s),st.text)});
+    var fmt=q('#formats');head(fmt,c.formats);
+    if(fmt&&c.formats)qa('.fmt',fmt).forEach(function(f,i){var it=c.formats.items[i];if(!it)return;
+      fill(q('h3',f),it.title);fill(q('p',f),it.text)});
+    var cas=q('#cases');head(cas,c.cases);
+    if(cas&&c.cases){qa('.gc-cap',cas).forEach(function(g,i){var cp=c.cases.captions[i];if(!cp)return;
+      fill(q('h3',g),cp.title);fill(q('p',g),cp.text)});fill(q('.cases-note',cas),c.cases.note)}
+    var led=q('#lead');head(led,c.lead);
+    if(led&&c.lead)qa('.form-benefits li',led).forEach(function(li,i){text(li,c.lead.benefits[i])});
+    head(q('#media'),c.media);
+    if(c.footer)fill(q('.foot-brand p:not(.foot-slogan)'),c.footer.about);
+    if(c.seo){
+      try{TITLES.en=c.seo.title_en||TITLES.en;TITLES.ru=c.seo.title_ru||TITLES.ru;
+        document.title=TITLES[document.documentElement.getAttribute('data-lang')]||TITLES.en}catch(e){}
+      var md=q('meta[name="description"]');if(md&&c.seo.description)md.setAttribute('content',c.seo.description);
+    }
+  }).catch(function(){})
+})();
+</script>
+<script>
 // language toggle — attribute lives on <html> only (a body/html split once hid BOTH languages)
 const TITLES={en:'PART X — Auto Spare Parts Export from China, Worldwide',ru:'PART X — Экспорт автозапчастей из Китая по всему миру'};
 function setLang(l){
@@ -1152,8 +1223,9 @@ if(params.get('static')==='1'||matchMedia('(prefers-reduced-motion:reduce)').mat
     var msg=buildMsg();
     function fallback(){
       var wa=document.getElementById('sendWa'),tg=document.getElementById('sendTg');
-      wa.href='https://wa.me/79629355787?text='+encodeURIComponent(msg);
-      tg.href='https://t.me/borodakitai';
+      var ct=window.PX_CONTACTS||{};
+      wa.href='https://wa.me/'+(ct.whatsapp||'79629355787')+'?text='+encodeURIComponent(msg);
+      tg.href='https://t.me/'+(ct.telegram||'borodakitai');
       tg.onclick=function(){try{navigator.clipboard.writeText(msg)}catch(e){}};
       sent.classList.add('on');
       sent.scrollIntoView({behavior:'smooth',block:'nearest'});

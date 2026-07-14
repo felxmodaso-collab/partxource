@@ -1,0 +1,271 @@
+backend:
+  name: github
+  repo: felxmodaso-collab/partxource
+  branch: main
+
+site_url: https://felxmodaso-collab.github.io/partxource/
+display_url: https://felxmodaso-collab.github.io/partxource/
+media_folder: assets/uploads
+public_folder: assets/uploads
+
+collections:
+  - name: site
+    label: Тексты сайта
+    icon: edit_note
+    files:
+      - name: content
+        label: Все тексты и контакты
+        file: content/site.json
+        format: json
+        fields:
+          - name: contacts
+            label: '📞 Контакты'
+            widget: object
+            fields:
+              - { name: phone_display, label: 'Телефон (как показывать)', widget: string, hint: 'Например: +7 962 935-57-87' }
+              - { name: phone_e164, label: 'Телефон для звонка (только цифры с +)', widget: string, hint: 'Например: +79629355787 — на него ведёт нажатие' }
+              - { name: whatsapp, label: 'WhatsApp (только цифры, без +)', widget: string, hint: 'Например: 79629355787' }
+              - { name: telegram, label: 'Telegram (без @)', widget: string, hint: 'Например: borodakitai' }
+              - name: wechat
+                label: WeChat (строка в подвале)
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+          - name: seo
+            label: '🔍 Заголовок вкладки и описание для поиска'
+            widget: object
+            collapsed: true
+            fields:
+              - { name: title_en, label: 'Заголовок вкладки (EN)', widget: string }
+              - { name: title_ru, label: 'Заголовок вкладки (RU)', widget: string }
+              - { name: description, label: 'Описание для Google/Яндекс', widget: text }
+          - name: hero
+            label: '🚗 Главный экран'
+            widget: object
+            fields:
+              - name: eyebrow
+                label: Строка над заголовком
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+              - { name: title_line1, label: 'Слоган — строка 1', widget: string }
+              - { name: title_line2, label: 'Слоган — строка 2 (оранжевая)', widget: string }
+              - name: sub
+                label: Подзаголовок
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: text }
+                  - { name: en, label: EN, widget: text }
+              - name: stats
+                label: Цифры (4 плитки)
+                widget: list
+                min: 4
+                max: 4
+                fields:
+                  - { name: value, label: 'Значение (крупно)', widget: string }
+                  - name: label
+                    label: Подпись (полная)
+                    widget: object
+                    fields:
+                      - { name: ru, label: RU, widget: string }
+                      - { name: en, label: EN, widget: string }
+                  - name: label_short
+                    label: Подпись (короткая, для телефона)
+                    widget: object
+                    fields:
+                      - { name: ru, label: RU, widget: string }
+                      - { name: en, label: EN, widget: string }
+          - name: supply
+            label: '🔧 Что мы поставляем'
+            widget: object
+            fields:
+              - name: kicker
+                label: Надзаголовок секции
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+              - name: title
+                label: Заголовок секции
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+              - name: items
+                label: Позиции (7 карточек)
+                widget: list
+                min: 7
+                max: 7
+                fields:
+                  - name: title
+                    label: Название
+                    widget: object
+                    fields:
+                      - { name: ru, label: RU, widget: string }
+                      - { name: en, label: EN, widget: string }
+                  - name: sub
+                    label: Подстрока
+                    widget: object
+                    fields:
+                      - { name: ru, label: RU, widget: string }
+                      - { name: en, label: EN, widget: string }
+          - name: how
+            label: '🛣 Как мы работаем'
+            widget: object
+            fields:
+              - name: kicker
+                label: Надзаголовок секции
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+              - name: title
+                label: Заголовок секции
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+              - name: steps
+                label: Шаги (5)
+                widget: list
+                min: 5
+                max: 5
+                fields:
+                  - name: title
+                    label: Название шага
+                    widget: object
+                    fields:
+                      - { name: ru, label: RU, widget: string }
+                      - { name: en, label: EN, widget: string }
+                  - name: text
+                    label: Текст шага
+                    widget: object
+                    fields:
+                      - { name: ru, label: RU, widget: text }
+                      - { name: en, label: EN, widget: text }
+          - name: formats
+            label: '📦 Форматы сотрудничества'
+            widget: object
+            fields:
+              - name: kicker
+                label: Надзаголовок секции
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+              - name: title
+                label: Заголовок секции
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+              - name: items
+                label: Карточки (3)
+                widget: list
+                min: 3
+                max: 3
+                fields:
+                  - name: title
+                    label: Название
+                    widget: object
+                    fields:
+                      - { name: ru, label: RU, widget: string }
+                      - { name: en, label: EN, widget: string }
+                  - name: text
+                    label: Текст
+                    widget: object
+                    fields:
+                      - { name: ru, label: RU, widget: text }
+                      - { name: en, label: EN, widget: text }
+          - name: cases
+            label: '⚙️ Кейсы (колесо с фото)'
+            widget: object
+            fields:
+              - name: kicker
+                label: Надзаголовок секции
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+              - name: title
+                label: Заголовок секции
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+              - name: note
+                label: Подпись под колесом
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+              - name: captions
+                label: Подписи к фото (6, по порядку вращения)
+                widget: list
+                min: 6
+                max: 6
+                fields:
+                  - name: title
+                    label: Заголовок
+                    widget: object
+                    fields:
+                      - { name: ru, label: RU, widget: string }
+                      - { name: en, label: EN, widget: string }
+                  - name: text
+                    label: Описание
+                    widget: object
+                    fields:
+                      - { name: ru, label: RU, widget: text }
+                      - { name: en, label: EN, widget: text }
+          - name: lead
+            label: '📝 Форма заявки'
+            widget: object
+            fields:
+              - name: kicker
+                label: Надзаголовок секции
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+              - name: title
+                label: Заголовок секции
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+              - name: benefits
+                label: Преимущества (3 пункта)
+                widget: list
+                min: 3
+                max: 3
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+          - name: media
+            label: '🎬 Медиа / Telegram-канал'
+            widget: object
+            fields:
+              - name: kicker
+                label: Надзаголовок секции
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+              - name: title
+                label: Заголовок секции
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+          - name: footer
+            label: '⬇️ Подвал'
+            widget: object
+            fields:
+              - name: about
+                label: Описание компании
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: text }
+                  - { name: en, label: EN, widget: text }
