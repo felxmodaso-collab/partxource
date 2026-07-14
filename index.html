@@ -1187,7 +1187,7 @@ if(params.get('static')==='1'||matchMedia('(prefers-reduced-motion:reduce)').mat
 /* lead form: validate → POST to the worker endpoint when configured,
    otherwise hand the prefilled request to WhatsApp/Telegram */
 (function(){
-  var ENDPOINT='';/* set to the Cloudflare Worker URL after deploy (see ../worker/README.md) */
+  var ENDPOINT='https://partx-leads.enssel.workers.dev';/* CF Worker → Telegram; on any failure the form falls back to WhatsApp/Telegram prefill */
   var form=document.getElementById('leadForm'); if(!form) return;
   var sent=document.getElementById('formSent');
   var photo=document.getElementById('f-photo');
