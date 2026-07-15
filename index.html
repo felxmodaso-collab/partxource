@@ -354,7 +354,13 @@ footer{background:var(--ink-3);border-top:1px solid var(--line-dark);padding:70p
 }
 @media(max-width:560px){
   .wrap{padding-left:20px;padding-right:20px}
-  .sec{padding:80px 0}
+  .sec{padding:64px 0}
+  /* restrained mobile type: smaller section headings with breathing leading,
+     tight heading->content gap, and one consistent (left) alignment */
+  .sec-head{margin-bottom:26px}
+  .sec h2{font-size:27px;line-height:1.14;letter-spacing:-.015em}
+  .sec-head.center{text-align:left;margin-inline:0}
+  .step h3{font-size:22px}
   .fgrid{grid-template-columns:1fr}
   .foot-bottom{flex-direction:column;gap:10px}
   .hero-cta{flex-direction:column}
@@ -907,7 +913,8 @@ document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',
 (function(){
   let l;
   try{l=localStorage.getItem('px-lang')}catch(e){}
-  if(l!=='ru'&&l!=='en') l=(navigator.language||'').toLowerCase().startsWith('ru')?'ru':'en';
+  /* base version is ALWAYS English; Russian only after an explicit toggle (no browser-language auto-switch) */
+  if(l!=='ru'&&l!=='en') l='en';
   setLang(l);
 })();
 
