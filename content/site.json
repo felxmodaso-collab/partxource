@@ -61,12 +61,12 @@
     "title": { "ru": "Мы постоянно снимаем то, что отгружаем", "en": "We constantly film what we ship" },
     "note": { "ru": "Работает сильнее любого каталога.", "en": "Stronger than any catalogue." },
     "captions": [
-      { "title": { "ru": "Контейнер ДВС", "en": "A container of engines" }, "text": { "ru": "40HQ, набитый проверенными двигателями — три яруса, крепление, дуннаж.", "en": "A 40HQ packed with verified engines — three tiers, secured and dunnaged." } },
-      { "title": { "ru": "Погрузка контейнера", "en": "Container loading" }, "text": { "ru": "Отгрузка со склада в Гуанчжоу.", "en": "Dispatch from the Guangzhou yard." } },
-      { "title": { "ru": "Разбор премиума", "en": "Premium teardown" }, "text": { "ru": "Mercedes, Ferrari — оригинальные узлы.", "en": "Mercedes, Ferrari — genuine parts." } },
-      { "title": { "ru": "Проверка эндоскопом", "en": "Endoscope inspection" }, "text": { "ru": "Lamborghini V12 — контроль состояния.", "en": "Lamborghini V12 — condition check." } },
-      { "title": { "ru": "Склад разбора", "en": "Teardown warehouse" }, "text": { "ru": "Toyota Tundra, кузовные детали, ноускаты — сотни позиций в наличии.", "en": "Toyota Tundra, body parts, nose cuts — hundreds of items in stock." } },
-      { "title": { "ru": "Подготовка к отгрузке", "en": "Prepping for dispatch" }, "text": { "ru": "Двигатель с хранения — обвязка, ковш, погрузка.", "en": "An engine off the rack — rigging, tray, loading." } }
+      { "title": { "ru": "Погрузка контейнера", "en": "Container loading" }, "text": { "ru": "Отгрузка со склада в Гуанчжоу.", "en": "Dispatch from our Guangzhou yard." } },
+      { "title": { "ru": "Склад двигателей", "en": "Engine warehouse" }, "text": { "ru": "Тысячи проверенных ДВС в наличии.", "en": "Thousands of verified engines in stock." } },
+      { "title": { "ru": "Контейнер в загрузке", "en": "Loaded container" }, "text": { "ru": "Ярусная укладка, крепёж, дуннаж.", "en": "Tiered, secured and dunnaged." } },
+      { "title": { "ru": "Стеллажное хранение", "en": "Racked storage" }, "text": { "ru": "Каждый узел с биркой и фото.", "en": "Every unit tagged and photographed." } },
+      { "title": { "ru": "Готово к отгрузке", "en": "Ready to ship" }, "text": { "ru": "Упаковка и консервация под перевозку.", "en": "Wrapped and preserved for transit." } },
+      { "title": { "ru": "Разбор под заказ", "en": "Teardown to order" }, "text": { "ru": "Кузова, ноускаты, агрегаты.", "en": "Bodies, nose cuts, assemblies." } }
     ]
   },
   "lead": {
