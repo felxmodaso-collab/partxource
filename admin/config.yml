@@ -3,8 +3,8 @@ backend:
   repo: felxmodaso-collab/partxource
   branch: main
 
-site_url: https://felxmodaso-collab.github.io/partxource/
-display_url: https://felxmodaso-collab.github.io/partxource/
+site_url: https://partxource.com/
+display_url: https://partxource.com/
 media_folder: assets/uploads
 public_folder: assets/uploads
 
