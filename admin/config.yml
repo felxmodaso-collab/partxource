@@ -26,6 +26,7 @@ collections:
               - { name: phone_e164, label: 'Телефон для звонка (только цифры с +)', widget: string, hint: 'Например: +79629355787 — на него ведёт нажатие' }
               - { name: whatsapp, label: 'WhatsApp (только цифры, без +)', widget: string, hint: 'Например: 79629355787' }
               - { name: telegram, label: 'Telegram (без @)', widget: string, hint: 'Например: borodakitai' }
+              - { name: instagram, label: 'Instagram (без @, только имя профиля)', widget: string, hint: 'Например: partx.global — ссылка ведёт на instagram.com/partx.global' }
               - name: wechat
                 label: WeChat (строка в подвале)
                 widget: object
@@ -191,12 +192,6 @@ collections:
                   - { name: en, label: EN, widget: string }
               - name: title
                 label: Заголовок секции
-                widget: object
-                fields:
-                  - { name: ru, label: RU, widget: string }
-                  - { name: en, label: EN, widget: string }
-              - name: note
-                label: Подпись под колесом
                 widget: object
                 fields:
                   - { name: ru, label: RU, widget: string }

@@ -860,10 +860,12 @@ footer>.wrap{position:relative;z-index:2}
     var ct=c.contacts||{};
     window.PX_CONTACTS=ct;
     var tg='https://t.me/'+ct.telegram,wa='https://wa.me/'+ct.whatsapp,tel='tel:'+ct.phone_e164;
+    var ig=ct.instagram?'https://www.instagram.com/'+ct.instagram+'/':'';
     qa('.mmenu-contacts a').forEach(function(a){
       var h=a.getAttribute('href')||'';
       if(h.indexOf('t.me')>-1)a.href=tg;
       else if(h.indexOf('wa.me')>-1)a.href=wa;
+      else if(h.indexOf('instagram')>-1&&ig)a.href=ig;
       else if(h.indexOf('tel:')===0){a.href=tel;a.textContent=ct.phone_display}
     });
     qa('.foot-col a').forEach(function(a){
@@ -871,11 +873,13 @@ footer>.wrap{position:relative;z-index:2}
       if(h.indexOf('tel:')===0){a.href=tel;a.textContent=ct.phone_display}
       else if(h.indexOf('t.me')>-1){a.href=tg;a.textContent='Telegram · @'+ct.telegram}
       else if(h.indexOf('wa.me')>-1)a.href=wa;
+      else if(h.indexOf('instagram')>-1&&ig){a.href=ig;a.textContent='Instagram · @'+ct.instagram}
     });
     var wech=q('.foot-col span[style]');if(wech&&ct.wechat)wech.innerHTML=spans(ct.wechat);
     var mcta=q('.media-cta');
     if(mcta){var mspans=qa('.tg > span',mcta);if(mspans.length)mspans[mspans.length-1].textContent='@'+ct.telegram;
-      var ma=q('a',mcta);if(ma)ma.href=tg}
+      var mig=q('.tg a',mcta);if(mig&&ig)mig.href=ig;
+      var mbtn=q('.btn',mcta);if(mbtn)mbtn.href=tg}
     if(c.hero){
       fill(q('.eyebrow'),c.hero.eyebrow);
       var h1=q('h1');
