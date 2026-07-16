@@ -263,6 +263,7 @@ h1 .accent{background:var(--accent);-webkit-background-clip:text;background-clip
 .field input{border:1px solid var(--line-light);border-radius:10px;padding:12px 14px;font-family:inherit;font-size:16px;color:var(--on-light);background:var(--paper);transition:.25s;width:100%}
 .field input:focus{outline:0;border-color:var(--orange);background:#fff;box-shadow:0 0 0 3px rgba(245,132,42,.14)}
 .field input.err{border-color:#c65b4e;box-shadow:0 0 0 3px rgba(198,91,78,.14)}
+.field .field-err{font-size:12px;color:#c65b4e;margin-top:6px;line-height:1.35;font-family:"Geist Mono"}
 .upload{border:1px dashed var(--line-light);border-radius:10px;padding:16px;text-align:center;font-size:13px;color:var(--mut-light);font-family:"Geist Mono";cursor:pointer;display:block;transition:border-color .25s}
 .upload:hover{border-color:var(--orange)}
 .upload input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
@@ -1334,16 +1335,31 @@ if(params.get('static')==='1'||matchMedia('(prefers-reduced-motion:reduce)').mat
     return rows.filter(function(r){return r[1]!==''||r[0].indexOf('PART X')>-1})
       .map(function(r){return r[1]?r[0]+': '+r[1]:r[0]}).join('\n');
   }
+  function fEl(id){return document.getElementById(id)}
+  function setErr(id,ru,en){var e=fEl(id);if(!e)return;e.classList.add('err');
+    var m=e.parentNode.querySelector('.field-err');
+    if(!m){m=document.createElement('div');m.className='field-err';e.parentNode.appendChild(m);}
+    m.innerHTML='<span class="ru">'+ru+'</span><span class="en">'+en+'</span>';}
+  function clearErr(id){var e=fEl(id);if(!e)return;e.classList.remove('err');
+    var m=e.parentNode.querySelector('.field-err');if(m)m.remove();}
+  ['f-make','f-model','f-vin','f-part','f-qty','f-contact','f-country'].forEach(function(id){
+    var e=fEl(id);if(e)e.addEventListener('input',function(){clearErr(id)});});
+  function validContact(c){return ((c.match(/\d/g)||[]).length>=7)||/[a-zA-Z0-9_.]{4,}/.test(c.replace(/\s/g,''));}
   form.addEventListener('submit',function(e){
     e.preventDefault();
     if(form.querySelector('.hp').value) return; /* honeypot */
-    var contact=document.getElementById('f-contact');
-    var hasSubject=val('f-make')||val('f-model')||val('f-vin')||val('f-part');
-    var ok=true;
-    contact.classList.toggle('err',!val('f-contact')); if(!val('f-contact')){ok=false;contact.focus();}
-    var vin=document.getElementById('f-vin');
-    vin.classList.toggle('err',!!val('f-vin')&&val('f-vin').replace(/\s/g,'').length!==17);
-    if(!ok||!hasSubject){ if(!hasSubject){['f-make','f-part'].forEach(function(i){document.getElementById(i).classList.add('err')});} return; }
+    ['f-make','f-model','f-vin','f-part','f-qty','f-contact'].forEach(clearErr);
+    var first=null,bad=function(id,ru,en){setErr(id,ru,en);if(!first)first=fEl(id)};
+    var contact=val('f-contact');
+    if(!contact) bad('f-contact','Укажите телефон, Telegram или WhatsApp','Add a phone, Telegram or WhatsApp');
+    else if(!validContact(contact)) bad('f-contact','Похоже на ошибку — укажите номер (+7…) или @username','Looks invalid — enter a phone (+7…) or @username');
+    var vin=val('f-vin').replace(/\s/g,'');
+    if(vin && !/^[A-HJ-NPR-Z0-9]{17}$/i.test(vin)) bad('f-vin','VIN — ровно 17 символов (без I, O, Q)','VIN must be exactly 17 characters (no I, O, Q)');
+    var qty=val('f-qty');
+    if(qty && !/^\d+$/.test(qty)) bad('f-qty','Количество — только число','Quantity must be a number');
+    var hasSubject=val('f-make')||val('f-model')||vin||val('f-part')||(photo&&photo.files&&photo.files.length);
+    if(!hasSubject) bad('f-make','Укажите марку/модель, VIN или номер детали','Add a make/model, VIN or part number');
+    if(first){first.focus();first.scrollIntoView({behavior:'smooth',block:'center'});return;}
     var msg=buildMsg();
     function fallback(){
       var wa=document.getElementById('sendWa'),tg=document.getElementById('sendTg');
