@@ -259,6 +259,15 @@ collections:
                 fields:
                   - { name: ru, label: RU, widget: string }
                   - { name: en, label: EN, widget: string }
+              - name: reels
+                label: 'Видео (можно добавлять, удалять, менять порядок)'
+                label_singular: Видео
+                widget: list
+                summary: '{{fields.video}}'
+                hint: 'Загрузите mp4-видео и (по желанию) картинку-обложку. Порядок — перетаскиванием.'
+                fields:
+                  - { name: video, label: 'Видео (mp4)', widget: file, media_library: { config: { max_file_size: 52428800 } } }
+                  - { name: poster, label: 'Обложка (jpg/png, необязательно)', widget: image, required: false }
           - name: footer
             label: '⬇️ Подвал'
             widget: object

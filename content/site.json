@@ -80,7 +80,19 @@
   },
   "media": {
     "kicker": { "ru": "Из Китая — вживую", "en": "From China, live" },
-    "title": { "ru": "Внутри разборов, где мы закупаем", "en": "Inside the yards we buy from" }
+    "title": { "ru": "Внутри разборов, где мы закупаем", "en": "Inside the yards we buy from" },
+    "reels": [
+      { "video": "assets/reels/IMG_2893.mp4", "poster": "assets/reels/IMG_2893.jpg" },
+      { "video": "assets/reels/IMG_2769.mp4", "poster": "assets/reels/IMG_2769.jpg" },
+      { "video": "assets/reels/IMG_2782.mp4", "poster": "assets/reels/IMG_2782.jpg" },
+      { "video": "assets/reels/IMG_2799.mp4", "poster": "assets/reels/IMG_2799.jpg" },
+      { "video": "assets/reels/IMG_2802.mp4", "poster": "assets/reels/IMG_2802.jpg" },
+      { "video": "assets/reels/IMG_2810.mp4", "poster": "assets/reels/IMG_2810.jpg" },
+      { "video": "assets/reels/IMG_2822.mp4", "poster": "assets/reels/IMG_2822.jpg" },
+      { "video": "assets/reels/IMG_2823.mp4", "poster": "assets/reels/IMG_2823.jpg" },
+      { "video": "assets/reels/IMG_2842.mp4", "poster": "assets/reels/IMG_2842.jpg" },
+      { "video": "assets/reels/IMG_2866.mp4", "poster": "assets/reels/IMG_2866.jpg" }
+    ]
   },
   "footer": {
     "about": { "ru": "Экспорт автозапчастей из Китая: поиск, проверка, выкуп и доставка под ключ. Новые, OEM и Б/У.", "en": "Auto spare parts export from China: sourcing, inspection, purchase and delivery, end to end. Genuine, OEM and used." }

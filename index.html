@@ -901,6 +901,14 @@ footer>.wrap{position:relative;z-index:2}
     var led=q('#lead');head(led,c.lead);
     if(led&&c.lead)qa('.form-benefits li',led).forEach(function(li,i){text(li,c.lead.benefits[i])});
     head(q('#media'),c.media);
+    var rtrack=q('#reelsTrack');
+    if(rtrack&&c.media&&c.media.reels&&c.media.reels.length){
+      rtrack.innerHTML=c.media.reels.map(function(rl){ if(!rl||!rl.video)return '';
+        return '<div class="reel" data-src="'+esc(rl.video)+'">'+
+          (rl.poster?'<img class="reel-poster" src="'+esc(rl.poster)+'" alt="" loading="lazy" decoding="async">':'')+
+          '<span class="reel-play"></span></div>'; }).join('');
+      if(window.PXReelsRefresh)window.PXReelsRefresh();
+    }
     if(c.footer)fill(q('.foot-brand p:not(.foot-slogan)'),c.footer.about);
     if(c.seo){
       try{TITLES.en=c.seo.title_en||TITLES.en;TITLES.ru=c.seo.title_ru||TITLES.ru;
@@ -1358,22 +1366,22 @@ if(params.get('static')==='1'||matchMedia('(prefers-reduced-motion:reduce)').mat
 /* media reels — poster-first carousel: arrows (desktop) + swipe (mobile), click to play (muted loop) */
 (function(){
   var track=document.getElementById('reelsTrack'); if(!track) return;
-  var reels=[].slice.call(track.querySelectorAll('.reel'));
   var prev=document.querySelector('.reels-prev'), next=document.querySelector('.reels-next');
   function step(){ var c=track.querySelector('.reel'); return c?c.getBoundingClientRect().width+18:280; }
   function upd(){ if(!prev)return; prev.classList.toggle('off',track.scrollLeft<=4); next.classList.toggle('off',track.scrollLeft>=track.scrollWidth-track.clientWidth-4); }
+  window.PXReelsRefresh=upd;   /* the CMS hydrator calls this after it rebuilds the track */
   if(prev)prev.addEventListener('click',function(){track.scrollBy({left:-step(),behavior:'smooth'});});
   if(next)next.addEventListener('click',function(){track.scrollBy({left:step(),behavior:'smooth'});});
   track.addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); setTimeout(upd,120);
-  reels.forEach(function(r){
-    r.addEventListener('click',function(){
-      var v=r.querySelector('video');
-      if(v){ if(v.paused){ v.play(); r.classList.add('playing'); } else { v.pause(); r.classList.remove('playing'); } return; }
-      reels.forEach(function(o){ var ov=o.querySelector('video'); if(ov){ov.pause();} o.classList.remove('playing'); });
-      v=document.createElement('video'); v.src=r.dataset.src; v.muted=true; v.loop=true; v.playsInline=true;
-      v.setAttribute('playsinline',''); v.setAttribute('preload','auto');
-      r.appendChild(v); r.classList.add('playing'); v.play().catch(function(){});
-    });
+  /* delegated click — survives the hydrator replacing the reels with CMS-managed ones */
+  track.addEventListener('click',function(e){
+    var r=e.target.closest?e.target.closest('.reel'):null; if(!r||!track.contains(r))return;
+    var v=r.querySelector('video');
+    if(v){ if(v.paused){ v.play(); r.classList.add('playing'); } else { v.pause(); r.classList.remove('playing'); } return; }
+    [].slice.call(track.querySelectorAll('.reel')).forEach(function(o){ var ov=o.querySelector('video'); if(ov)ov.pause(); o.classList.remove('playing'); });
+    v=document.createElement('video'); v.src=r.dataset.src; v.muted=true; v.loop=true; v.playsInline=true;
+    v.setAttribute('playsinline',''); v.setAttribute('preload','auto');
+    r.appendChild(v); r.classList.add('playing'); v.play().catch(function(){});
   });
 })();
 </script>
