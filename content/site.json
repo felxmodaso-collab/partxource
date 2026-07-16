@@ -59,7 +59,6 @@
   "cases": {
     "kicker": { "ru": "Реальные поставки", "en": "Real deliveries" },
     "title": { "ru": "Снимаем каждый заказ перед отгрузкой", "en": "We film every order before it ships" },
-    "note": { "ru": "Работает сильнее любого каталога.", "en": "Stronger than any catalogue." },
     "captions": [
       { "title": { "ru": "Погрузка контейнера", "en": "Container loading" }, "text": { "ru": "Отгрузка со склада в Гуанчжоу.", "en": "Dispatch from our Guangzhou yard." } },
       { "title": { "ru": "Склад двигателей", "en": "Engine warehouse" }, "text": { "ru": "Тысячи проверенных ДВС в наличии.", "en": "Thousands of verified engines in stock." } },
