@@ -1145,7 +1145,7 @@ if(params.get('static')==='1'||matchMedia('(prefers-reduced-motion:reduce)').mat
   if(matchMedia('(prefers-reduced-motion: reduce)').matches || typeof gsap==='undefined') return;
   if(new URLSearchParams(location.search).get('static')==='1') return;
   ScrollTrigger.create({trigger:'.hero',start:'top top',
-    end:function(){return '+=' + (small?160:220) + '%'},
+    end:function(){return '+=' + (small?110:130) + '%'},
     pin:true,scrub:.5,anticipatePin:1,refreshPriority:2,
     onUpdate:function(st){
       var p=st.progress; progress=p;
