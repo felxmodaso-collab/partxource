@@ -203,7 +203,8 @@ h1 .accent{background:var(--accent);-webkit-background-clip:text;background-clip
 .step p{color:var(--mut-dark);line-height:1.55;font-size:16px}
 .data-card{background:linear-gradient(180deg,var(--panel),rgba(18,22,15,.6));border:1px solid var(--line-dark);border-radius:16px;overflow:hidden;box-shadow:0 30px 60px -34px #000, inset 0 1px 0 rgba(255,255,255,.05)}
 .data-head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:rgba(0,0,0,.25);border-bottom:1px solid var(--line-dark);font-family:"Geist Mono";font-size:12px;letter-spacing:.08em;color:var(--mut-dark)}
-.data-row{display:flex;justify-content:space-between;padding:12px 18px;border-bottom:1px solid var(--line-dark);font-size:14.5px}
+.data-row{display:flex;justify-content:space-between;gap:18px;padding:12px 18px;border-bottom:1px solid var(--line-dark);font-size:14.5px}
+.data-row .k{flex:0 1 auto}.data-row .v{flex:0 0 auto;text-align:right}
 .data-row .k{color:var(--mut-dark)}
 .data-row .v{font-family:"Geist Mono";color:var(--on-dark)}
 .data-foot{padding:12px 18px;font-family:"Geist Mono";font-size:12.5px;letter-spacing:.05em;text-align:center}
@@ -583,16 +584,16 @@ footer>.wrap{position:relative;z-index:2}
 <section class="sec sec-light" id="supply">
   <div class="wrap">
     <div class="sec-head rev">
-      <h2><span class="ru">Любые узлы — от ДВС до экзотики</span><span class="en">Any part — from engines to exotics</span></h2>
+      <h2><span class="ru">Что мы поставляем</span><span class="en">What we source</span></h2>
     </div>
     <div class="supply">
       <div class="supply-tile rev"><svg class="supply-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6.5l14 5v11c0 8.5-5.5 15.5-14 19-8.5-3.5-14-10.5-14-19v-11Z"/><path d="M17.5 23.5l4.5 4.5 8.5-8.5"/><path stroke-dasharray="2.5 3" d="M24 41.5v-4"/></svg><h3><span class="ru">Новые, OEM и Б/У</span><span class="en">Genuine, OEM &amp; Used</span></h3><div class="sub"><span class="ru">запчасти любого происхождения</span><span class="en">spare parts of any origin</span></div></div>
-      <div class="supply-tile rev"><svg class="supply-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="21" width="27" height="15" rx="2.5"/><path d="M13 21v-4h19v4"/><path stroke-dasharray="2.5 3.5" d="M16 17v-6M22.5 17v-6M29 17v-6"/><path d="M36 28.5h2"/><circle cx="41.5" cy="28.5" r="3.5"/></svg><h3><span class="ru">ДВС, КПП и агрегаты</span><span class="en">Engines &amp; transmissions</span></h3><div class="sub"><span class="ru">двигатели · коробки · узлы в сборе</span><span class="en">engines · gearboxes · assemblies</span></div></div>
-      <div class="supply-tile rev"><svg class="supply-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="20" height="20" rx="3"/><path d="M19 14v-4.5M24 14v-4.5M29 14v-4.5M19 38.5V34M24 38.5V34M29 38.5V34"/><path stroke-dasharray="2.5 3" d="M19.5 28.5c0-4.5 9-3 9-9"/></svg><h3><span class="ru">Электрика и электроника</span><span class="en">Electrical &amp; electronics</span></h3><div class="sub">ECU · <span class="ru">датчики · блоки</span><span class="en">sensors · modules</span></div></div>
-      <div class="supply-tile rev"><svg class="supply-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13h18.5l7.5 9.5V32a2.5 2.5 0 01-2.5 2.5H12A2.5 2.5 0 019.5 32V15.5A2.5 2.5 0 0112 13Z"/><path d="M14.5 22.5l4-6.5h8.5l5 6.5"/><path d="M29 27.5h5.5"/><path stroke-dasharray="2.5 3" d="M9.5 39h29"/></svg><h3><span class="ru">Кузов, салон и обвесы</span><span class="en">Body, interior &amp; styling</span></h3><div class="sub"><span class="ru">капоты · двери · комплекты</span><span class="en">hoods · doors · styling kits</span></div></div>
+      <div class="supply-tile rev"><svg class="supply-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="21" width="27" height="15" rx="2.5"/><path d="M13 21v-4h19v4"/><path stroke-dasharray="2.5 3.5" d="M16 17v-6M22.5 17v-6M29 17v-6"/><path d="M36 28.5h2"/><circle cx="41.5" cy="28.5" r="3.5"/></svg><h3><span class="ru">ДВС, КПП и агрегаты</span><span class="en">Engines, transmissions &amp; assemblies</span></h3><div class="sub"><span class="ru">бензин · дизель · гибрид</span><span class="en">petrol · diesel · hybrid</span></div></div>
+      <div class="supply-tile rev"><svg class="supply-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><rect x="14" y="14" width="20" height="20" rx="3"/><path d="M19 14v-4.5M24 14v-4.5M29 14v-4.5M19 38.5V34M24 38.5V34M29 38.5V34"/><path stroke-dasharray="2.5 3" d="M19.5 28.5c0-4.5 9-3 9-9"/></svg><h3><span class="ru">Электрика и электроника</span><span class="en">Electrical &amp; electronic components</span></h3><div class="sub">ECU · <span class="ru">датчики · блоки</span><span class="en">sensors · modules</span></div></div>
+      <div class="supply-tile rev"><svg class="supply-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13h18.5l7.5 9.5V32a2.5 2.5 0 01-2.5 2.5H12A2.5 2.5 0 019.5 32V15.5A2.5 2.5 0 0112 13Z"/><path d="M14.5 22.5l4-6.5h8.5l5 6.5"/><path d="M29 27.5h5.5"/><path stroke-dasharray="2.5 3" d="M9.5 39h29"/></svg><h3><span class="ru">Кузов, салон и обвесы</span><span class="en">Body parts, interiors &amp; styling kits</span></h3><div class="sub"><span class="ru">капоты · двери · бамперы · трим</span><span class="en">hoods · doors · bumpers · trim</span></div></div>
       <div class="supply-tile rev"><svg class="supply-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><rect x="10" y="16" width="24" height="16" rx="3"/><path d="M34 21h3.5a2 2 0 012 2v2a2 2 0 01-2 2H34"/><path d="M19.5 19.5l-4 6h5l-3.5 5.5"/><path stroke-dasharray="2.5 3" d="M26 22.5h4M26 26h4"/></svg><h3><span class="ru">Гибриды и электромобили</span><span class="en">Hybrid &amp; EV components</span></h3><div class="sub"><span class="ru">батареи · инверторы · моторы</span><span class="en">batteries · inverters · motors</span></div></div>
-      <div class="supply-tile rev"><svg class="supply-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17.5h34v15H7Z"/><path d="M7 32.5l3-3.5M41 32.5l-3-3.5"/><path d="M13 21v8M19 21v8M25 21v8M31 21v8M37 21v8" opacity=".9"/><path stroke-dasharray="2.5 3" d="M7 38h34"/></svg><h3><span class="ru">Контейнерные партии</span><span class="en">Bulk container orders</span></h3><div class="sub">40HQ · <span class="ru">консолидация груза</span><span class="en">cargo consolidation</span></div></div>
-      <div class="supply-tile rev"><svg class="supply-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="16"/><path d="M16.5 16.5l15 15"/><path stroke-dasharray="2.5 3.5" d="M31.5 16.5l-15 15"/></svg><h3><span class="ru">Экзотика</span><span class="en">Exotic car parts</span></h3><div class="sub">McLaren · Lamborghini · Ferrari</div></div>
+      <div class="supply-tile rev"><svg class="supply-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17.5h34v15H7Z"/><path d="M7 32.5l3-3.5M41 32.5l-3-3.5"/><path d="M13 21v8M19 21v8M25 21v8M31 21v8M37 21v8" opacity=".9"/><path stroke-dasharray="2.5 3" d="M7 38h34"/></svg><h3><span class="ru">Контейнерные партии</span><span class="en">Bulk container orders</span></h3><div class="sub"><span class="ru">20ft · 40HQ · консолидация</span><span class="en">20ft · 40HQ · consolidated</span></div></div>
+      <div class="supply-tile rev"><svg class="supply-ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="16"/><path d="M16.5 16.5l15 15"/><path stroke-dasharray="2.5 3.5" d="M31.5 16.5l-15 15"/></svg><h3><span class="ru">Экзотические запчасти</span><span class="en">Exotic car spare parts</span></h3><div class="sub"><span class="ru">McLaren · Lamborghini · Ferrari и др.</span><span class="en">McLaren · Lamborghini · Ferrari &amp; more</span></div></div>
     </div>
   </div>
 </section>
@@ -603,7 +604,7 @@ footer>.wrap{position:relative;z-index:2}
   <div class="px-gear gear-deco ccw" aria-hidden="true" style="--g:url(assets/gears/gear-bolt.svg);--spd:64s;left:84.63%;top:76.14%;width:29.54vw;--lx:28.6%;--ly:35.6%;--sx:71.4%;--sy:64.4%"><div class="pxg-rot"><img loading="lazy" decoding="async" src="assets/gears/tex-bolt.webp" alt=""><div class="pxg-beam"></div><div class="pxg-shade"></div></div></div>
   <div class="wrap">
     <div class="sec-head center rev">
-      <h2><span class="ru">Прозрачный путь от запроса до вашего склада</span><span class="en">A transparent path from request to your warehouse</span></h2>
+      <h2><span class="ru">От номера детали до вашего склада</span><span class="en">From your part number to your loading dock</span></h2>
     </div>
     <div class="steps">
       <div class="step rev">
@@ -635,7 +636,7 @@ footer>.wrap{position:relative;z-index:2}
       </div>
       <div class="step rev">
         <div class="step-copy">
-                    <h3><span class="ru">Проверяем товар</span><span class="en">We inspect the goods</span></h3>
+                    <h3><span class="ru">Проверяем до оплаты</span><span class="en">We inspect before you pay</span></h3>
           <p><span class="ru">Каждая деталь — фото и видео, проверка эндоскопом, замер компрессии. Брак не отгружаем без вашего согласия.</span><span class="en">Every part gets photo and video, endoscope check, compression test. No defective batch ships without your confirmation.</span></p>
         </div>
         <div class="data-card">
@@ -663,7 +664,7 @@ footer>.wrap{position:relative;z-index:2}
       </div>
       <div class="step rev">
         <div class="step-copy">
-                    <h3><span class="ru">Доставка</span><span class="en">Delivery</span></h3>
+                    <h3><span class="ru">Отгружаем и растаможиваем</span><span class="en">We ship it and clear customs</span></h3>
           <p><span class="ru">Малый опт или контейнер — авиа или море. Белый импорт с документами и НДС при необходимости.</span><span class="en">Small wholesale or a full container — by air or sea. White import with documents and VAT when needed.</span></p>
         </div>
         <div class="data-card">
@@ -685,12 +686,12 @@ footer>.wrap{position:relative;z-index:2}
 <section class="sec sec-light" id="formats">
   <div class="wrap">
     <div class="sec-head rev">
-      <h2><span class="ru">Под ваш масштаб — от одной детали до контейнера</span><span class="en">Scaled to you — from a single part to a full container</span></h2>
+      <h2><span class="ru">Одна деталь или целый контейнер</span><span class="en">One part or a full container</span></h2>
     </div>
     <div class="formats">
       <div class="fmt rev"><h3><span class="ru">Малый опт</span><span class="en">Small wholesale</span></h3><p><span class="ru">Для магазинов и сервисов. Точечные позиции под конкретные заказы, быстрая авиадоставка.</span><span class="en">For shops and service centres. Specific items for specific orders, fast air delivery.</span></p></div>
       <div class="fmt rev"><h3><span class="ru">Контейнерные поставки</span><span class="en">Container shipments</span></h3><p><span class="ru">Для крупных компаний. Консолидация груза, оптимальная загрузка контейнера, море.</span><span class="en">For large companies. Cargo consolidation, optimal container loading, sea freight.</span></p></div>
-      <div class="fmt hl rev"><h3><span class="ru">Белый импорт</span><span class="en">White import</span></h3><p><span class="ru">Инвойс, документы, НДС. Полный поиск и сопровождение поставщиков под ключ.</span><span class="en">Invoice, documents, VAT. Full supplier search and end-to-end sourcing support.</span></p></div>
+      <div class="fmt hl rev"><h3><span class="ru">Белый импорт</span><span class="en">White import</span></h3><p><span class="ru">Инвойс, документы, НДС. Полный поиск поставщиков и все бумаги под ключ.</span><span class="en">Invoice, documents and VAT. Full supplier search with all the paperwork handled.</span></p></div>
     </div>
   </div>
 </section>
@@ -701,7 +702,7 @@ footer>.wrap{position:relative;z-index:2}
     <div class="gearcase">
       <div class="gc-copy">
         <div class="sec-head rev">
-      <h2><span class="ru">Мы постоянно снимаем то, что отгружаем</span><span class="en">We constantly film what we ship</span></h2>
+      <h2><span class="ru">Снимаем каждый заказ перед отгрузкой</span><span class="en">We film every order before it ships</span></h2>
     </div>
         <div class="gc-caps">
           <div class="gc-cap on"><h3><span class="ru">Погрузка контейнера</span><span class="en">Container loading</span></h3><p><span class="ru">Отгрузка со склада в Гуанчжоу.</span><span class="en">Dispatch from our Guangzhou yard.</span></p></div>
@@ -730,7 +731,7 @@ footer>.wrap{position:relative;z-index:2}
     <div class="form-wrap">
       <div class="rev">
         <div class="sec-head" style="margin-bottom:28px">
-          <h2><span class="ru">Найдём нужную запчасть за 24 часа</span><span class="en">We'll find your part in 24 hours</span></h2>
+          <h2><span class="ru">Пришлите деталь — оценим за 24 часа</span><span class="en">Send us the part. We quote it within 24 hours</span></h2>
         </div>
         <ul class="form-benefits">
           <li><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="#20140a" stroke-width="3.4"><path d="M4 12l6 6L20 6"/></svg></span><span class="ru">Проверка совместимости по VIN до покупки</span><span class="en">VIN fitment check before you buy</span></li>
@@ -777,7 +778,7 @@ footer>.wrap{position:relative;z-index:2}
   <div class="px-gear gear-deco" aria-hidden="true" style="--g:url(assets/gears/gear-bolt.svg);--spd:47s;left:-6.33%;top:84.31%;width:12.54vw;--lx:73.6%;--ly:39.4%;--sx:26.4%;--sy:60.6%"><div class="pxg-rot"><img loading="lazy" decoding="async" src="assets/gears/tex-bolt.webp" alt=""><div class="pxg-beam"></div><div class="pxg-shade"></div></div></div>
   <div class="wrap">
     <div class="sec-head reels-head rev">
-      <h2><span class="ru">Reels и обзоры с разборов и складов</span><span class="en">Reels and walkthroughs from yards and warehouses</span></h2>
+      <h2><span class="ru">Внутри разборов, где мы закупаем</span><span class="en">Inside the yards we buy from</span></h2>
       <div class="reels-ctrl">
         <button class="reels-nav reels-prev" aria-label="Назад" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
         <button class="reels-nav reels-next" aria-label="Вперёд" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>

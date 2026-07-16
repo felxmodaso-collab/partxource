@@ -25,40 +25,40 @@
   },
   "supply": {
     "kicker": { "ru": "Что мы поставляем", "en": "What we source" },
-    "title": { "ru": "Любые узлы — от ДВС до экзотики", "en": "Any part — from engines to exotics" },
+    "title": { "ru": "Что мы поставляем", "en": "What we source" },
     "items": [
       { "title": { "ru": "Новые, OEM и Б/У", "en": "Genuine, OEM & Used" }, "sub": { "ru": "запчасти любого происхождения", "en": "spare parts of any origin" } },
-      { "title": { "ru": "ДВС, КПП и агрегаты", "en": "Engines & transmissions" }, "sub": { "ru": "двигатели · коробки · узлы в сборе", "en": "engines · gearboxes · assemblies" } },
-      { "title": { "ru": "Электрика и электроника", "en": "Electrical & electronics" }, "sub": { "ru": "ECU · датчики · блоки", "en": "ECU · sensors · modules" } },
-      { "title": { "ru": "Кузов, салон и обвесы", "en": "Body, interior & styling" }, "sub": { "ru": "капоты · двери · комплекты", "en": "hoods · doors · styling kits" } },
+      { "title": { "ru": "ДВС, КПП и агрегаты", "en": "Engines, transmissions & assemblies" }, "sub": { "ru": "бензин · дизель · гибрид", "en": "petrol · diesel · hybrid" } },
+      { "title": { "ru": "Электрика и электроника", "en": "Electrical & electronic components" }, "sub": { "ru": "ECU · датчики · блоки", "en": "ECU · sensors · modules" } },
+      { "title": { "ru": "Кузов, салон и обвесы", "en": "Body parts, interiors & styling kits" }, "sub": { "ru": "капоты · двери · бамперы · трим", "en": "hoods · doors · bumpers · trim" } },
       { "title": { "ru": "Гибриды и электромобили", "en": "Hybrid & EV components" }, "sub": { "ru": "батареи · инверторы · моторы", "en": "batteries · inverters · motors" } },
-      { "title": { "ru": "Контейнерные партии", "en": "Bulk container orders" }, "sub": { "ru": "40HQ · консолидация груза", "en": "40HQ · cargo consolidation" } },
-      { "title": { "ru": "Экзотика", "en": "Exotic car parts" }, "sub": { "ru": "McLaren · Lamborghini · Ferrari", "en": "McLaren · Lamborghini · Ferrari" } }
+      { "title": { "ru": "Контейнерные партии", "en": "Bulk container orders" }, "sub": { "ru": "20ft · 40HQ · консолидация", "en": "20ft · 40HQ · consolidated" } },
+      { "title": { "ru": "Экзотические запчасти", "en": "Exotic car spare parts" }, "sub": { "ru": "McLaren · Lamborghini · Ferrari и др.", "en": "McLaren · Lamborghini · Ferrari & more" } }
     ]
   },
   "how": {
     "kicker": { "ru": "Как мы работаем", "en": "How we work" },
-    "title": { "ru": "Прозрачный путь от запроса до вашего склада", "en": "A transparent path from request to your warehouse" },
+    "title": { "ru": "От номера детали до вашего склада", "en": "From your part number to your loading dock" },
     "steps": [
       { "title": { "ru": "Получаем запрос", "en": "We receive your request" }, "text": { "ru": "Вы присылаете марку, модель, VIN, номер детали или просто фото. Мы точно определяем, что нужно.", "en": "You send make, model, VIN, part number or just a photo. We pin down exactly what's needed." } },
       { "title": { "ru": "Подбираем поставщиков", "en": "We match suppliers" }, "text": { "ru": "Сверяем запрос с нашей сетью проверенных разборов и заводов Китая. Сравниваем цену, срок и состояние.", "en": "We match your request against our network of verified Chinese yards and factories, comparing price, lead time and condition." } },
-      { "title": { "ru": "Проверяем товар", "en": "We inspect the goods" }, "text": { "ru": "Каждая деталь — фото и видео, проверка эндоскопом, замер компрессии. Брак не отгружаем без вашего согласия.", "en": "Every part gets photo and video, endoscope check, compression test. No defective batch ships without your confirmation." } },
+      { "title": { "ru": "Проверяем до оплаты", "en": "We inspect before you pay" }, "text": { "ru": "Каждая деталь — фото и видео, проверка эндоскопом, замер компрессии. Брак не отгружаем без вашего согласия.", "en": "Every part gets photo and video, endoscope check, compression test. No defective batch ships without your confirmation." } },
       { "title": { "ru": "Согласовываем цену", "en": "We agree the price" }, "text": { "ru": "Финальный инвойс без скрытых комиссий. Вы видите цену детали, логистику и наш процент отдельно.", "en": "A final invoice with no hidden fees. You see the part price, logistics and our margin separately." } },
-      { "title": { "ru": "Доставка", "en": "Delivery" }, "text": { "ru": "Малый опт или контейнер — авиа или море. Белый импорт с документами и НДС при необходимости.", "en": "Small wholesale or a full container — by air or sea. White import with documents and VAT when needed." } }
+      { "title": { "ru": "Отгружаем и растаможиваем", "en": "We ship it and clear customs" }, "text": { "ru": "Малый опт или контейнер — авиа или море. Белый импорт с документами и НДС при необходимости.", "en": "Small wholesale or a full container — by air or sea. White import with documents and VAT when needed." } }
     ]
   },
   "formats": {
     "kicker": { "ru": "Форматы сотрудничества", "en": "Ways to work with us" },
-    "title": { "ru": "Под ваш масштаб — от одной детали до контейнера", "en": "Scaled to you — from a single part to a full container" },
+    "title": { "ru": "Одна деталь или целый контейнер", "en": "One part or a full container" },
     "items": [
       { "title": { "ru": "Малый опт", "en": "Small wholesale" }, "text": { "ru": "Для магазинов и сервисов. Точечные позиции под конкретные заказы, быстрая авиадоставка.", "en": "For shops and service centres. Specific items for specific orders, fast air delivery." } },
       { "title": { "ru": "Контейнерные поставки", "en": "Container shipments" }, "text": { "ru": "Для крупных компаний. Консолидация груза, оптимальная загрузка контейнера, море.", "en": "For large companies. Cargo consolidation, optimal container loading, sea freight." } },
-      { "title": { "ru": "Белый импорт", "en": "White import" }, "text": { "ru": "Инвойс, документы, НДС. Полный поиск и сопровождение поставщиков под ключ.", "en": "Invoice, documents, VAT. Full supplier search and end-to-end sourcing support." } }
+      { "title": { "ru": "Белый импорт", "en": "White import" }, "text": { "ru": "Инвойс, документы, НДС. Полный поиск поставщиков и все бумаги под ключ.", "en": "Invoice, documents and VAT. Full supplier search with all the paperwork handled." } }
     ]
   },
   "cases": {
     "kicker": { "ru": "Реальные поставки", "en": "Real deliveries" },
-    "title": { "ru": "Мы постоянно снимаем то, что отгружаем", "en": "We constantly film what we ship" },
+    "title": { "ru": "Снимаем каждый заказ перед отгрузкой", "en": "We film every order before it ships" },
     "note": { "ru": "Работает сильнее любого каталога.", "en": "Stronger than any catalogue." },
     "captions": [
       { "title": { "ru": "Погрузка контейнера", "en": "Container loading" }, "text": { "ru": "Отгрузка со склада в Гуанчжоу.", "en": "Dispatch from our Guangzhou yard." } },
@@ -71,7 +71,7 @@
   },
   "lead": {
     "kicker": { "ru": "Заявка", "en": "Request" },
-    "title": { "ru": "Найдём нужную запчасть за 24 часа", "en": "We'll find your part in 24 hours" },
+    "title": { "ru": "Пришлите деталь — оценим за 24 часа", "en": "Send us the part. We quote it within 24 hours" },
     "benefits": [
       { "ru": "Проверка совместимости по VIN до покупки", "en": "VIN fitment check before you buy" },
       { "ru": "Фото и видео детали до отгрузки", "en": "Photo and video of the part before shipment" },
@@ -80,7 +80,7 @@
   },
   "media": {
     "kicker": { "ru": "Из Китая — вживую", "en": "From China, live" },
-    "title": { "ru": "Reels и обзоры с разборов и складов", "en": "Reels and walkthroughs from yards and warehouses" }
+    "title": { "ru": "Внутри разборов, где мы закупаем", "en": "Inside the yards we buy from" }
   },
   "footer": {
     "about": { "ru": "Экспорт автозапчастей из Китая: поиск, проверка, выкуп и доставка под ключ. Новые, OEM и Б/У.", "en": "Auto spare parts export from China: sourcing, inspection, purchase and delivery, end to end. Genuine, OEM and used." }
