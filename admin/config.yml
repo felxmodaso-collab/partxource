@@ -214,6 +214,19 @@ collections:
                     fields:
                       - { name: ru, label: RU, widget: text }
                       - { name: en, label: EN, widget: text }
+                  - name: photo
+                    label: Фото этого окна
+                    widget: image
+                    required: false
+                    hint: 'Заменяет фото в этом окне колеса. Положение, обрезка и тон остаются прежними. Формат JPG или PNG, лучше горизонтальное, от 1200 px по ширине.'
+                  - name: focus
+                    label: 'Фокус кадра по горизонтали, %'
+                    widget: number
+                    value_type: int
+                    min: 0
+                    max: 100
+                    required: false
+                    hint: 'Какую часть фото держать в центре окна: 0 левый край, 50 центр, 100 правый край.'
           - name: lead
             label: '📝 Форма заявки'
             widget: object

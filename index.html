@@ -907,6 +907,9 @@ footer>.wrap{position:relative;z-index:2}
     var cas=q('#cases');head(cas,c.cases);
     if(cas&&c.cases){qa('.gc-cap',cas).forEach(function(g,i){var cp=c.cases.captions[i];if(!cp)return;
       fill(q('h3',g),cp.title);fill(q('p',g),cp.text)})}
+    if(cas&&c.cases&&c.cases.captions){qa('.gcw .gcp-img',cas).forEach(function(im,i){var cp=c.cases.captions[i];if(!cp)return;
+      if(cp.photo)im.setAttribute('src',cp.photo);
+      if(cp.focus!=null&&cp.focus!==''&&!isNaN(cp.focus))im.style.setProperty('--opx',(+cp.focus)+'%')})}
     var led=q('#lead');head(led,c.lead);
     if(led&&c.lead)qa('.form-benefits li',led).forEach(function(li,i){text(li,c.lead.benefits[i])});
     head(q('#media'),c.media);
