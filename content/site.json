@@ -262,11 +262,11 @@
   "cases": {
     "kicker": {
       "ru": "Реальные поставки",
-      "en": "Real deliveries"
+      "en": "Внутри наших процессов"
     },
     "title": {
-      "ru": "Снимаем каждый заказ перед отгрузкой",
-      "en": "We film every order before it ships"
+      "ru": "Inside PARTX",
+      "en": "Inside PARTX"
     },
     "captions": [
       {
@@ -277,9 +277,7 @@
         "text": {
           "ru": "Отгрузка со склада в Гуанчжоу.",
           "en": "Dispatch from our Guangzhou yard."
-        },
-        "photo": "assets/cases/sklad-dvs.jpg",
-        "focus": 36
+        }
       },
       {
         "title": {
@@ -289,9 +287,7 @@
         "text": {
           "ru": "Тысячи проверенных ДВС в наличии.",
           "en": "Thousands of verified engines in stock."
-        },
-        "photo": "assets/cases/pogruzka.jpg",
-        "focus": 50
+        }
       },
       {
         "title": {
@@ -301,9 +297,7 @@
         "text": {
           "ru": "Ярусная укладка, крепёж, дуннаж.",
           "en": "Tiered, secured and dunnaged."
-        },
-        "photo": "assets/cases/razbor.jpg",
-        "focus": 46
+        }
       },
       {
         "title": {
@@ -313,9 +307,7 @@
         "text": {
           "ru": "Каждый узел с биркой и фото.",
           "en": "Every unit tagged and photographed."
-        },
-        "photo": "assets/cases/v12.jpg",
-        "focus": 38
+        }
       },
       {
         "title": {
@@ -325,9 +317,7 @@
         "text": {
           "ru": "Упаковка и консервация под перевозку.",
           "en": "Wrapped and preserved for transit."
-        },
-        "photo": "assets/cases/premium.jpg",
-        "focus": 50
+        }
       },
       {
         "title": {
@@ -337,9 +327,7 @@
         "text": {
           "ru": "Кузова, ноускаты, агрегаты.",
           "en": "Bodies, nose cuts, assemblies."
-        },
-        "photo": "assets/cases/nose.jpg",
-        "focus": 40
+        }
       }
     ]
   },
