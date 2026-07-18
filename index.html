@@ -287,6 +287,11 @@ h1 .accent{background:var(--accent);-webkit-background-clip:text;background-clip
 .reel-play{position:absolute;left:50%;top:50%;width:58px;height:58px;transform:translate(-50%,-50%);border-radius:50%;background:rgba(18,20,18,.5);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.28);transition:transform .3s var(--ease),background .3s,opacity .35s;pointer-events:none}
 .reel-play::after{content:"";position:absolute;left:54%;top:50%;transform:translate(-50%,-50%);border-style:solid;border-width:10px 0 10px 16px;border-color:transparent transparent transparent #fff}
 .reel:hover .reel-play{transform:translate(-50%,-50%) scale(1.08);background:var(--orange)}
+.yt-box{position:fixed;inset:0;z-index:200;background:rgba(10,11,9,.86);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:4vw}
+.yt-frame{position:relative;width:min(1080px,94vw);aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.yt-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.yt-close{position:absolute;top:10px;right:10px;z-index:2;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(18,20,18,.55);color:#fff;font-size:22px;line-height:1;cursor:pointer;backdrop-filter:blur(4px);transition:background .3s}
+.yt-close:hover{background:var(--orange)}
 .reels-head{max-width:none;display:flex;justify-content:space-between;align-items:flex-end;gap:28px}
 .reels-head h2{max-width:22ch}
 .reels-ctrl{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;padding:0 14px;pointer-events:none;z-index:5}
@@ -850,6 +855,11 @@ footer>.wrap{position:relative;z-index:2}
    an edit lands; if the fetch fails the baked content simply stays. */
 (function(){
   function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+  /* accepts youtu.be, watch?v=, shorts/, embed/, live/ links or a bare 11-char id */
+  window.PXYtId=function(u){if(!u)return null;u=String(u).trim();
+    if(/^[\w-]{11}$/.test(u))return u;
+    var m=u.match(/(?:youtube(?:-nocookie)?\.com\/(?:watch\?[^#]*?v=|shorts\/|embed\/|live\/)|youtu\.be\/)([\w-]{11})/);
+    return m?m[1]:null};
   function spans(p){return '<span class="ru">'+esc(p.ru)+'</span><span class="en">'+esc(p.en)+'</span>'}
   function fill(el,p){if(el&&p&&p.ru!=null)el.innerHTML=spans(p)}
   function text(el,p){if(!el||!p)return;
@@ -915,7 +925,13 @@ footer>.wrap{position:relative;z-index:2}
     head(q('#media'),c.media);
     var rtrack=q('#reelsTrack');
     if(rtrack&&c.media&&c.media.reels&&c.media.reels.length){
-      rtrack.innerHTML=c.media.reels.map(function(rl){ if(!rl||!rl.video)return '';
+      rtrack.innerHTML=c.media.reels.map(function(rl){ if(!rl)return '';
+        var yt=rl.youtube?window.PXYtId(rl.youtube):null;
+        if(yt){ var po=rl.poster||('https://i.ytimg.com/vi/'+yt+'/hqdefault.jpg');
+          return '<div class="reel reel-yt" data-yt="'+esc(yt)+'">'+
+            '<img class="reel-poster" src="'+esc(po)+'" alt="" loading="lazy" decoding="async">'+
+            '<span class="reel-play"></span></div>'; }
+        if(!rl.video)return '';
         return '<div class="reel" data-src="'+esc(rl.video)+'">'+
           (rl.poster?'<img class="reel-poster" src="'+esc(rl.poster)+'" alt="" loading="lazy" decoding="async">':'')+
           '<span class="reel-play"></span></div>'; }).join('');
@@ -1401,8 +1417,22 @@ if(params.get('static')==='1'||matchMedia('(prefers-reduced-motion:reduce)').mat
   if(next)next.addEventListener('click',function(){track.scrollBy({left:step(),behavior:'smooth'});});
   track.addEventListener('scroll',upd,{passive:true}); addEventListener('resize',upd); setTimeout(upd,120);
   /* delegated click — survives the hydrator replacing the reels with CMS-managed ones */
+  /* YouTube lightbox — full videos live on YouTube, the tile opens a 16:9 player */
+  var ytBox=null;
+  function ytStopReels(){ [].slice.call(track.querySelectorAll('.reel')).forEach(function(o){ var ov=o.querySelector('video'); if(ov)ov.pause(); o.classList.remove('playing'); }); }
+  function ytOpen(id){
+    ytStopReels();
+    ytBox=document.createElement('div'); ytBox.className='yt-box';
+    ytBox.innerHTML='<div class="yt-frame"><button class="yt-close" aria-label="Close">&times;</button>'+
+      '<iframe src="https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&playsinline=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>';
+    ytBox.addEventListener('click',function(e){ if(e.target===ytBox||e.target.closest('.yt-close'))ytClose(); });
+    document.body.appendChild(ytBox);
+  }
+  function ytClose(){ if(ytBox){ ytBox.remove(); ytBox=null; } }
+  addEventListener('keydown',function(e){ if(e.key==='Escape')ytClose(); });
   track.addEventListener('click',function(e){
     var r=e.target.closest?e.target.closest('.reel'):null; if(!r||!track.contains(r))return;
+    if(r.dataset.yt){ ytOpen(r.dataset.yt); return; }
     var v=r.querySelector('video');
     if(v){ if(v.paused){ v.play(); r.classList.add('playing'); } else { v.pause(); r.classList.remove('playing'); } return; }
     [].slice.call(track.querySelectorAll('.reel')).forEach(function(o){ var ov=o.querySelector('video'); if(ov)ov.pause(); o.classList.remove('playing'); });
