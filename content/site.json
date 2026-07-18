@@ -361,7 +361,7 @@
       "en": "From China, live"
     },
     "title": {
-      "ru": "Внутри разборов, где мы закупаем",
+      "ru": "Внутри разборок, где мы закупаем",
       "en": "Inside the yards we buy from"
     },
     "reels": [
@@ -370,7 +370,7 @@
         "poster": "assets/reels/IMG_2893.jpg"
       },
       {
-        "video": "/assets/uploads/partx-logo-fin-6.png",
+        "video": "/assets/uploads/IMG_2933-compressed.mp4",
         "poster": ""
       },
       {
@@ -378,19 +378,19 @@
         "poster": "assets/reels/IMG_2782.jpg"
       },
       {
-        "video": "assets/reels/IMG_2799.mp4",
-        "poster": "assets/reels/IMG_2799.jpg"
+        "video": "/assets/uploads/IMG_2407-compressed.mp4",
+        "poster": ""
       },
       {
         "video": "assets/reels/IMG_2802.mp4",
         "poster": "assets/reels/IMG_2802.jpg"
       },
       {
-        "video": "assets/reels/IMG_2810.mp4",
-        "poster": "assets/reels/IMG_2810.jpg"
+        "video": "/assets/uploads/IMG_2107-compressed.mp4",
+        "poster": ""
       },
       {
-        "video": "/assets/uploads/partx-logo-fin-3.png",
+        "video": "/assets/uploads/IMG_2690-compressed.mp4",
         "poster": ""
       },
       {
@@ -402,8 +402,8 @@
         "poster": "assets/reels/IMG_2842.jpg"
       },
       {
-        "video": "assets/reels/IMG_2866.mp4",
-        "poster": "assets/reels/IMG_2866.jpg"
+        "video": "/assets/uploads/IMG_2675-compressed.mov",
+        "poster": ""
       }
     ]
   },
