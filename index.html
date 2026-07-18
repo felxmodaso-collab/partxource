@@ -287,7 +287,8 @@ h1 .accent{background:var(--accent);-webkit-background-clip:text;background-clip
 .reel-play{position:absolute;left:50%;top:50%;width:58px;height:58px;transform:translate(-50%,-50%);border-radius:50%;background:rgba(18,20,18,.5);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.28);transition:transform .3s var(--ease),background .3s,opacity .35s;pointer-events:none}
 .reel-play::after{content:"";position:absolute;left:54%;top:50%;transform:translate(-50%,-50%);border-style:solid;border-width:10px 0 10px 16px;border-color:transparent transparent transparent #fff}
 .reel:hover .reel-play{transform:translate(-50%,-50%) scale(1.08);background:var(--orange)}
-.reel-yt iframe{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:102%;aspect-ratio:9/16;height:auto;border:0;pointer-events:none}
+.reel-yt iframe{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:102%;aspect-ratio:9/16;height:auto;border:0;pointer-events:none;z-index:1}
+.reel-yt .reel-poster,.reel-yt .reel-play{z-index:2}
 .reels-head{max-width:none;display:flex;justify-content:space-between;align-items:flex-end;gap:28px}
 .reels-head h2{max-width:22ch}
 .reels-ctrl{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;padding:0 14px;pointer-events:none;z-index:5}
