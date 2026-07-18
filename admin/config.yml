@@ -275,7 +275,7 @@ collections:
                 hint: 'Каждая запись: либо файл mp4 до 8 МБ, либо ссылка на YouTube. Ролики крупнее 8 МБ выложите на YouTube и вставьте ссылку, или пришлите нам. Порядок — перетаскиванием.'
                 fields:
                   - { name: video, label: 'Видео-файл (mp4, до 8 МБ)', widget: file, required: false, media_library: { config: { max_file_size: 8388608 } } }
-                  - { name: youtube, label: 'Или ссылка на YouTube', widget: string, required: false, hint: 'Например https://youtu.be/XXXXXXXXXXX. Обложка подтянется с YouTube сама, при желании замените своей ниже.' }
+                  - { name: youtube, label: 'Или ссылка на YouTube', widget: string, required: false, hint: 'Например https://youtu.be/XXXXXXXXXXX. Обложка появится на сайте автоматически через пару минут после сохранения, при желании замените своей ниже.' }
                   - { name: poster, label: 'Обложка (jpg/png, необязательно)', widget: image, required: false }
           - name: footer
             label: '⬇️ Подвал'
