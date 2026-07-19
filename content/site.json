@@ -307,14 +307,14 @@
       },
       {
         "title": {
-          "ru": "Стеллажное хранение",
-          "en": "Racked storage"
+          "ru": "Склад оптики",
+          "en": "Lighting stock"
         },
         "text": {
-          "ru": "Каждый узел с биркой и фото.",
-          "en": "Every unit tagged and photographed."
+          "ru": "Тысячи едениц автомобильной оптики, доступных через нашу сеть поставщиков.",
+          "en": "Thousands of lighting parts ready for global sourcing."
         },
-        "photo": "assets/cases/v12.jpg",
+        "photo": "/assets/uploads/IMG_5415.jpg",
         "focus": 38
       },
       {
@@ -326,7 +326,7 @@
           "ru": "Упаковка и консервация под перевозку.",
           "en": "Wrapped and preserved for transit."
         },
-        "photo": "assets/cases/premium.jpg",
+        "photo": "/assets/uploads/IMG_5419.JPG",
         "focus": 50
       },
       {
@@ -338,7 +338,7 @@
           "ru": "Кузова, ноускаты, агрегаты.",
           "en": "Bodies, nose cuts, assemblies."
         },
-        "photo": "assets/cases/nose.jpg",
+        "photo": "/assets/uploads/photo_2026-07-19_13-11-02.jpg",
         "focus": 40
       }
     ]
