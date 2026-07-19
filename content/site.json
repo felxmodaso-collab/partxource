@@ -295,18 +295,6 @@
       },
       {
         "title": {
-          "ru": "Контейнер в загрузке",
-          "en": "Loaded container"
-        },
-        "text": {
-          "ru": "Ярусная укладка, крепёж, дуннаж.",
-          "en": "Tiered, secured and dunnaged."
-        },
-        "photo": "assets/cases/razbor.jpg",
-        "focus": 46
-      },
-      {
-        "title": {
           "ru": "Склад оптики",
           "en": "Lighting stock"
         },
@@ -328,6 +316,18 @@
         },
         "photo": "/assets/uploads/IMG_5419.JPG",
         "focus": 50
+      },
+      {
+        "title": {
+          "ru": "Контейнер в загрузке",
+          "en": "Loaded container"
+        },
+        "text": {
+          "ru": "Ярусная укладка, крепёж, дуннаж.",
+          "en": "Tiered, secured and dunnaged."
+        },
+        "photo": "assets/cases/razbor.jpg",
+        "focus": 46
       },
       {
         "title": {
