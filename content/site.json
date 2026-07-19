@@ -271,14 +271,14 @@
     "captions": [
       {
         "title": {
-          "ru": "Погрузка контейнера",
-          "en": "Container loading"
+          "ru": "Эксклюзивные автозапчасти",
+          "en": "Exotic parts warehouse"
         },
         "text": {
-          "ru": "Отгрузка со склада в Гуанчжоу.",
-          "en": "Dispatch from our Guangzhou yard."
+          "ru": "Специализированный склад оригинальных запчастей для самых эксклюзивных автомобилей мира.",
+          "en": "A dedicated warehouse of genuine parts for the world's most exclusive vehicles."
         },
-        "photo": "assets/cases/sklad-dvs.jpg",
+        "photo": "/assets/uploads/IMG_5413.jpg",
         "focus": 36
       },
       {
@@ -379,58 +379,72 @@
     "reels": [
       {
         "video": "assets/reels/IMG_2893.mp4",
+        "youtube": "",
         "poster": "assets/reels/IMG_2893.jpg"
       },
       {
         "video": "assets/reels/IMG_2933.mp4",
+        "youtube": "",
         "poster": "assets/reels/IMG_2933.jpg"
       },
       {
         "video": "assets/reels/IMG_2782.mp4",
+        "youtube": "",
         "poster": "assets/reels/IMG_2782.jpg"
       },
       {
         "video": "assets/reels/IMG_2407.mp4",
+        "youtube": "",
         "poster": "assets/reels/IMG_2407.jpg"
       },
       {
         "video": "assets/reels/IMG_2802.mp4",
+        "youtube": "",
         "poster": "assets/reels/IMG_2802.jpg"
       },
       {
         "video": "assets/reels/IMG_2107.mp4",
+        "youtube": "",
         "poster": "assets/reels/IMG_2107.jpg"
       },
       {
         "video": "assets/reels/IMG_2690.mp4",
+        "youtube": "",
         "poster": "assets/reels/IMG_2690.jpg"
       },
       {
         "video": "assets/reels/IMG_2823.mp4",
+        "youtube": "",
         "poster": "assets/reels/IMG_2823.jpg"
       },
       {
         "video": "assets/reels/IMG_2842.mp4",
+        "youtube": "",
         "poster": "assets/reels/IMG_2842.jpg"
       },
       {
         "video": "assets/reels/IMG_2675.mp4",
+        "youtube": "",
         "poster": "assets/reels/IMG_2675.jpg"
       },
       {
         "video": "assets/reels/IMG_2006.mp4",
+        "youtube": "",
         "poster": "assets/reels/IMG_2006.jpg"
       },
       {
         "video": "assets/reels/IMG_2158.mp4",
+        "youtube": "",
         "poster": "assets/reels/IMG_2158.jpg"
       },
       {
         "video": "assets/reels/IMG_2408.mp4",
+        "youtube": "",
         "poster": "assets/reels/IMG_2408.jpg"
       },
       {
         "video": "assets/reels/IMG_3001.mp4",
+        "youtube": "",
         "poster": "assets/reels/IMG_3001.jpg"
       },
       {
