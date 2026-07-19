@@ -51,8 +51,18 @@ collections:
                 fields:
                   - { name: ru, label: RU, widget: string }
                   - { name: en, label: EN, widget: string }
-              - { name: title_line1, label: 'Слоган — строка 1', widget: string }
-              - { name: title_line2, label: 'Слоган — строка 2 (оранжевая)', widget: string }
+              - name: title_line1
+                label: 'Слоган — строка 1'
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
+              - name: title_line2
+                label: 'Слоган — строка 2 (оранжевая)'
+                widget: object
+                fields:
+                  - { name: ru, label: RU, widget: string }
+                  - { name: en, label: EN, widget: string }
               - name: sub
                 label: Подзаголовок
                 widget: object

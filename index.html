@@ -547,7 +547,7 @@ footer>.wrap{position:relative;z-index:2}
     <div class="hero-grid">
       <div>
         <p class="eyebrow"><span class="ru">Экспорт автозапчастей из Китая · по всему миру</span><span class="en">Auto Spare Parts Export · From China, Worldwide</span></p>
-        <h1>Beyond Parts.<br><span class="accent">Beyond Borders.</span></h1>
+        <h1><span class="ru">Beyond Parts.<br><span class="accent">Beyond Borders.</span></span><span class="en">Beyond Parts.<br><span class="accent">Beyond Borders.</span></span></h1>
         <p class="hero-sub">
           <span class="ru">Новые, OEM и Б/У запчасти. Поиск, проверка, выкуп и доставка — авиа и море, по всему миру.</span>
           <span class="en">Genuine, OEM &amp; used auto parts. Sourcing, inspection, purchase and delivery — air &amp; sea, worldwide.</span>
@@ -891,15 +891,16 @@ footer>.wrap{position:relative;z-index:2}
     if(c.hero){
       fill(q('.eyebrow'),c.hero.eyebrow);
       var h1=q('h1');
-      if(h1&&c.hero.title_line1)h1.innerHTML=esc(c.hero.title_line1)+'<br><span class="accent">'+esc(c.hero.title_line2)+'</span>';
+      if(h1&&c.hero.title_line1&&c.hero.title_line1.ru!=null)h1.innerHTML=spans(c.hero.title_line1)+'<br><span class="accent">'+spans(c.hero.title_line2)+'</span>';
       fill(q('.hero-sub'),c.hero.sub);
       qa('.trust-card .stat-row').forEach(function(row,i){var st=(c.hero.stats||[])[i];if(!st)return;
         q('b',row).textContent=st.value;text(q('b + span',row),st.label)});
       qa('.stats-strip .wrap > div').forEach(function(d,i){var st=(c.hero.stats||[])[i];if(!st)return;
         q('b',d).textContent=st.value;text(q('b + span',d),st.label_short)});
-      var slog=(c.hero.title_line1||'')+' '+(c.hero.title_line2||'');
-      var fs=q('.foot-slogan');if(fs)fs.textContent=slog;
-      var fb=qa('.foot-bottom span');if(fb[1])fb[1].textContent=slog;
+      var t1=c.hero.title_line1||{ru:'',en:''}, t2=c.hero.title_line2||{ru:'',en:''};
+      var slogO={ru:((t1.ru||'')+' '+(t2.ru||'')).trim(), en:((t1.en||'')+' '+(t2.en||'')).trim()};
+      var fs=q('.foot-slogan');if(fs)fs.innerHTML=spans(slogO);
+      var fb=qa('.foot-bottom span');if(fb[1])fb[1].innerHTML=spans(slogO);
     }
     function head(sec,data){if(!sec||!data)return;fill(q('.kicker',sec),data.kicker);fill(q('.sec-head h2',sec),data.title)}
     var sup=q('#supply');head(sup,c.supply);
