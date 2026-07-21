@@ -6,8 +6,8 @@
     "telegram": "borodakitai",
     "instagram": "partx.global",
     "wechat": {
-      "ru": "WeChat · ID по запросу",
-      "en": "WeChat · ID on request"
+      "ru": "info@partxource.com",
+      "en": "info@partxource.com"
     }
   },
   "seo": {
@@ -20,8 +20,14 @@
       "ru": "Экспорт автозапчастей из Китая · По всему миру",
       "en": "Auto Spare Parts Export · From China, Worldwide"
     },
-    "title_line1": { "ru": "Beyond Parts.", "en": "Beyond Parts." },
-    "title_line2": { "ru": "Beyond Borders.", "en": "Beyond Borders." },
+    "title_line1": {
+      "ru": "Beyond Parts.",
+      "en": "Beyond Parts."
+    },
+    "title_line2": {
+      "ru": "Beyond Borders.",
+      "en": "Beyond Borders."
+    },
     "sub": {
       "ru": "Новые, OEM и Б/У запчасти. Поиск, проверка, выкуп и доставка по всему миру.",
       "en": "Genuine, OEM & used auto parts. Sourcing, inspection, purchase and delivery"
